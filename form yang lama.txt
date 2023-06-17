@@ -1,0 +1,153 @@
+import React, { useState, useEffect } from 'react';
+import InputLabel from '@/Components/InputLabel';
+import InputError from '@/Components/InputError';
+import TextInput from '@/Components/TextInput';
+import { useForm } from "@inertiajs/react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { Inertia } from "@inertiajs/inertia";
+
+const CreateEventForm = ({ message }) => {
+    const [gambar, setGambar] = useState(null);
+    const { data, setData, processing, errors } = useForm({
+        _token: window.csrf_token,
+        judul_event: '',
+        deskripsi: '',
+        tempat: '',
+        tanggal_mulai: '',
+        tanggal_selesai: '',
+        gambar: null,
+        kategori: '',
+    });
+
+    useEffect(() => {
+        setData('_token', document.querySelector('meta[name="csrf-token"]').content);
+    }, []);
+
+    const handleDeskripsiChange = (content) => {
+        setData('deskripsi', content);
+    };
+
+    const handleGambarChange = (e) => {
+        setGambar(e.target.files[0]);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!processing) {
+            const formData = new FormData();
+            formData.append('gambar', gambar);
+            for (let key in data) {
+                formData.append(key, data[key]);
+            }
+            try {
+                Inertia.post('/admin/createevent', formData, {
+                    onError: (errors) => {
+                        console.log(errors);
+                        // Handle error, misalnya dengan menampilkan pesan error atau melakukan tindakan lain yang sesuai
+                    },
+                    headers: {
+                        'Content-Type': 'multipart/form-data' // Menyertakan header Content-Type
+                    }
+                });
+                // Handle ketika request berhasil
+            } catch (error) {
+                console.log(error);
+                // Handle error, misalnya dengan menampilkan pesan error atau melakukan tindakan lain yang sesuai
+            }
+        }
+    };
+    
+    return (
+        <form onSubmit={handleSubmit} method="POST" encType="multipart/form-data" className="w-full">
+            <div className="mb-4">
+                <InputLabel
+                    htmlFor="judul_event"
+                    value="Judul Event"
+                    className="text-gray-800 font-medium mb-2"
+                />
+                <TextInput
+                    id="judul_event"
+                    type="text"
+                    autoComplete="judul_event"
+                    onChange={(e) => setData('judul_event', e.target.value)}
+                    className="w-full appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <InputError message={message} className="mt-2" />
+            </div>
+            <div className="mb-4">
+                <label className="block mb-2" htmlFor="message">
+                    Deskripsi
+                </label>
+                <ReactQuill
+                    onChange={handleDeskripsiChange}
+                    value={data.deskripsi}
+                    className="w-full border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                />
+            </div>
+            <div className="mb-4">
+                <InputLabel
+                    htmlFor="tempat"
+                    value="Tempat"
+                    className="text-gray-800 font-medium mb-2"
+                />
+                <TextInput
+                    id="tempat"
+                    type="text"
+                    autoComplete="tempat"
+                    onChange={(e) => setData('tempat', e.target.value)}
+                    className="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                />
+            </div>
+            <div className="mb-4">
+                <InputLabel
+                    htmlFor="kategori"
+                    value="Kategori"
+                    className="text-gray-800 font-medium mb-2"
+                />
+                <TextInput
+                    id="kategori"
+                    type="text"
+                    autoComplete="kategori"
+                    onChange={(e) => setData('kategori', e.target.value)}
+                    className="appearance-none block w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                />
+            </div>
+            <div className="flex flex-wrap justify-between">
+                <label htmlFor="tanggal_mulai" className="w-full sm:w-auto lg:mt-2 md:mt-2">Tanggal Mulai:</label>
+                <input
+                    type="date"
+                    id="tanggal_mulai"
+                    name="tanggal_mulai"
+                    className="border border-gray-300 p-2 rounded-md ml-1 mr-2"
+                    onChange={(e) => setData('tanggal_mulai', e.target.value)}
+                />
+                <label htmlFor="tanggal_selesai" className="w-full sm:w-auto lg:mt-2 md:mt-2">Tanggal Selesai:</label>
+                <input
+                    type="date"
+                    id="tanggal_selesai"
+                    name="tanggal_selesai"
+                    className="border border-gray-300 p-2 rounded-md ml-1 mr-2"
+                    onChange={(e) => setData('tanggal_selesai', e.target.value)}
+                />
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-end">
+                <label htmlFor="gambar" className="block w-full sm:w-auto pr-4">
+                    <input
+                        type="file"
+                        name="gambar"
+                        onChange={(e) => handleGambarChange(e)} // Memanggil handleGambarChange saat terjadi perubahan pada input file
+                    />
+                </label>
+                <button className="btn btn-sm mt-2 sm:mt-0 bg-gray-600 hover:bg-gray-700 border-none ml-auto">Kembali</button>
+                <button
+                    type='submit'
+                    className="btn btn-sm mt-2 sm:mt-0 bg-teal-600 hover:bg-teal-700 border-none ml-2">
+                    Save</button>
+            </div>
+        </form>
+    )
+}
+
+export default CreateEventForm

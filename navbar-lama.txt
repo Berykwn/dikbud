@@ -1,0 +1,43 @@
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import { Link } from '@inertiajs/react';
+
+const Navbar = ({ pages }) => {
+    return (
+        <div className="sticky top-0 z-10">
+            <div className="navbar bottom-8 bg-gray-200">
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <label tabIndex={0} className="btn btn-ghost lg:hidden text-neutral-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </label>
+                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><Link href={route('home')} className={pages === 'Home' ? 'text-neutral-500' : ''}>Home</Link></li>
+                            <li><Link href={route('event')} className={pages === 'Event' ? 'text-neutral-500' : ''}>Event</Link></li>
+                            <li><Link href={route('berita')} className={pages === 'Berita' ? 'text-neutral-500' : ''}>Berita</Link></li>
+                            <li><Link href={route('museum')} className={pages === 'Museum' ? 'text-neutral-500' : ''}>Museum</Link></li>
+                            <li><a href="#kritikdansaran">Kritik & Saran</a></li>
+                        </ul>
+                    </div>
+                    <div className="inline-flex mt-2 ml-2">
+                        <ApplicationLogo className="w-10 h-12 fill-current text-slate-50 ml-4 mt-3 lg:mt-0 md:mt-0" />
+                        <a className="link link-hover normal-case text-neutral-500 text-xl ml-3 md:mt-2">
+                            Kebudayaan Dikbud Kab. Lahat</a>
+                    </div>
+                </div>
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal px-1 text-slate-50">
+                        <li><Link href='/' className={pages === 'Home' ? 'text-white bg-neutral-500' : 'text-neutral-500'}>Home</Link></li>
+                        <li><Link href={route('event')} className={pages === 'Event' ? 'text-white bg-neutral-400' : 'text-neutral-500'}>Event</Link></li>
+                        <li><Link href={route('berita')} className={pages === 'Berita' ? 'text-white bg-neutral-400' : 'text-neutral-500'}>Berita</Link></li>
+                        <li><Link href={route('museum')} className={pages === 'Museum' ? 'text-white bg-neutral-400' : 'text-neutral-500'}>Museum</Link></li>
+                        <li><a className="text-neutral-500" href="/#kritikdansaran">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
