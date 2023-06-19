@@ -23,7 +23,7 @@ class BeritaController extends Controller
             'pages' => 'Berita',
             'title' => 'Berita',
             'berita' => new BeritaCollection($this->berita),
-            'allBerita' => new BeritaCollection($this->allBerita)
+            'allBerita' => new BeritaCollection($this->allBerita) 
         ]);
     }
 

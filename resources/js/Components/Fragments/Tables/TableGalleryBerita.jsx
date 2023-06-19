@@ -10,7 +10,6 @@ export default function TableGalleryBerita({
     allGalleryBeritas,
     pages,
 }) {
-    console.log(allGalleryBeritas)
     const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
         galleryBeritas,
         allGalleryBeritas,
@@ -46,8 +45,7 @@ export default function TableGalleryBerita({
     const renderTableRow = () => {
         return (
             <tbody>
-                {filteredData &&
-                    filteredData.length > 0 &&
+                {filteredData.length > 0 &&
                     filteredData.map((item) => (
                         <tr key={item.id} className="bg-white">
                             <td className="bg-white">
@@ -55,7 +53,7 @@ export default function TableGalleryBerita({
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
                                             <img
-                                                src={`/storage/img/budayas/${item.thumbnail}`}
+                                                src={`/storage/img/gallery/beritas/${item.gambar}`}
                                                 alt={item.gambar}
                                             />
                                         </div>
@@ -67,28 +65,43 @@ export default function TableGalleryBerita({
                             </td>
                             <td className="bg-white">
                                 <div className="flex flex-wrap gap-2">
-                                    <LinkButton
-                                        href={route("dashboard.budaya.edit")}
-                                        as="button"
-                                        method="get"
-                                        data={{ id: item.id }}
-                                        variant="dodger-blue"
-                                        size="btn-xs"
-                                    >
-                                        Edit
-                                    </LinkButton>
-                                    <LinkButton
-                                        href={route("dashboard.budaya.detail")}
-                                        as="button"
-                                        method="get"
-                                        data={{ id: item.id }}
-                                        variant="deep-teal"
-                                        size="btn-xs"
+                                    {/* The button to open modal */}
+                                    <label
+                                        htmlFor={`galleryBeritaModal${item.id}`}
+                                        className="btn btn-xs bg-deep-teal border-0 hover:bg-deep-teal/80"
                                     >
                                         Detail
-                                    </LinkButton>
+                                    </label>
+
+                                    {/* Put this part before </body> tag */}
+                                    <input
+                                        type="checkbox"
+                                        id={`galleryBeritaModal${item.id}`}
+                                        className="modal-toggle"
+                                    />
+                                    <div className="modal">
+                                        <div className="modal-box">
+                                            <h3 className="font-bold text-lg">
+                                                {item.berita.judul}
+                                            </h3>
+                                            <div className="pt-4">
+                                                <img
+                                                    src={`/storage/img/gallery/beritas/${item.gambar}`}
+                                                    alt={item.gambar}
+                                                />
+                                            </div>
+                                            <div className="modal-action">
+                                                <label
+                                                    htmlFor={`galleryBeritaModal${item.id}`}
+                                                    className="btn"
+                                                >
+                                                    Close!
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <Link
-                                        href={route("dashboard.budaya.destroy")}
+                                        href={route("dashboard.galleryberita.destroy")}
                                         as="button"
                                         method="post"
                                         data={{ id: item.id }}

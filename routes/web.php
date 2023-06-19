@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [GalleryBeritaController::class, 'index'])->name('dashboard.galleryberita');
             Route::get('/create', [GalleryBeritaController::class, 'create'])->name('dashboard.galleryberita.create');
             Route::post('/create', [GalleryBeritaController::class, 'store'])->name('dashboard.galleryberita.store');
+            Route::post('/delete', [GalleryBeritaController::class, 'destroy'])->name('dashboard.galleryberita.destroy');
         });
         
 

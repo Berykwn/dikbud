@@ -7,6 +7,7 @@ import Linked from "@/Components/Elements/Link/Link";
 export default function DetailBerita(props) {
     const [selectedImage, setSelectedImage] = useState(null);
 
+    console.log(props)
     const images = props.gambarBerita.map((gambar) => ({
         id: gambar.id,
         src: gambar.gambar,
@@ -40,7 +41,7 @@ export default function DetailBerita(props) {
                             <img
                                 src={
                                     selectedImage
-                                        ? selectedImage.src
+                                        ? `/storage/img/gallery/beritas/${selectedImage.src}`
                                         : `/storage/img/beritas/${props.beritaDetail.thumbnail}`
                                 }
                                 alt={props.beritaDetail.judul}
@@ -58,7 +59,7 @@ export default function DetailBerita(props) {
                                         >
                                             <img
                                                 className="lg:rounded-lg w-40 h-40 sm:h-full md:h-full lg:h-full xl:h-full cursor-pointer hover:opacity-50 object-cover"
-                                                src={image.src}
+                                                src={`/storage/img/gallery/beritas/${image.src}`}
                                                 alt={image.alt}
                                                 onClick={() =>
                                                     handleImageClick(image)
@@ -92,6 +93,8 @@ export default function DetailBerita(props) {
                                 • Author: {props.beritaDetail.penulis}
                             </span>
                         </div>
+                        <p>{props.gambarBerita.gambar}</p>
+
                         <h2 className="block mt-1 text-2xl leading-tight font-medium text-black hover:underline">
                             {props.beritaDetail.judul}
                         </h2>

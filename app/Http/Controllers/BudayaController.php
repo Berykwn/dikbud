@@ -75,7 +75,7 @@ class BudayaController extends Controller
             $thumbnail = $request->file('thumbnail');
             $thumbnailName = time() . '_' . $thumbnail->getClientOriginalName();
 
-            $thumbnail->storeAs('img/budayas', $thumbnailName); // Store the image in the specified directory
+            $thumbnail->storeAs('img/budayas', $thumbnailName); // menyimpan gambar ke direktori
 
             $budaya = new Budaya();
             $budaya->nama = $request->input('nama');

@@ -23,9 +23,9 @@ export default function CreateGalleryBerita(props) {
                         </div>
                     </div>
                     <FormCreateGalleryBerita
+                        beritas={berita.data}
                         message={flash.message}
                         errors={errors}
-                        beritas={berita.data}
                     />
                 </div>
             </div>

@@ -2,10 +2,9 @@ import ListBerita from "@/Components/Fragments/Listdata/ListBerita";
 import Paginator from "@/Components/Fragments/Partials/Paginator";
 import MainLayout from "@/Layouts/MainLayout";
 
-export default function Berita(props) {
-    const { berita, allBerita, title, pages } = props;
-    const beritas = berita && berita.data ? berita.data : []; 
-    const allBeritas = allBerita && allBerita.data ? allBerita.data : [];
+export default function Berita({ berita, allBerita, title, pages }) {
+    const beritas = berita?.data || [];
+    const allBeritas = allBerita?.data || [];
 
     return (
         <MainLayout title={title} pages={pages}>
@@ -18,7 +17,7 @@ export default function Berita(props) {
                         isDark={false}
                     />
                     <div className="flex justify-center mt-4">
-                        <Paginator meta={berita.meta} />
+                        <Paginator meta={berita?.meta} />
                     </div>
                 </section>
             </div>

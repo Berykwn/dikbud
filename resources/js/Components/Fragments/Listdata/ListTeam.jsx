@@ -63,32 +63,21 @@ export default function ListTeam() {
         <div className="mx-auto max-w-7xl px-6 lg:px-2">
             <ListHeader />
             <div className="grid grid-cols-1 pt-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {dataArray.map((data, index) => (
-                    <div
-                        key={index}
-                        className="flex bg-white rounded-2xl"
-                    >
-                        <div className="flex items-center justify-center bg-gray-200 rounded-2xl">
-                            {/* Avatar */}
-                            <img
-                                src={data.imageUrl}
-                                alt={`${data.name}'s Avatar`}
-                                className="w-full h-full object-cover rounded-l-2xl"
-                            />
-                        </div>
-                        <div className="flex flex-col p-4">
-                            <h2 className="text-xl font-semibold">
-                                {data.name}
-                            </h2>
-                            <p className="text-gray-600">Marketing Manager</p>
-                            {/* <p className="text-gray-600 italic mt-2">
-                                "Success is not the key to happiness. Happiness
-                                is the key to success. If you love what you are
-                                doing, you will be successful."
-                            </p> */}
-                        </div>
+                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex flex-col items-center py-10">
+                        <img
+                            class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                            src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(12).webp"
+                            alt="Bonnie image"
+                        />
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                            Bonnie Green
+                        </h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            Visual Designer
+                        </span>
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );

@@ -49,10 +49,10 @@ export default function FromCreateBudaya({ kategoriBudayas, errors }) {
                 className="text-gray-800 font-medium mb-2"
             />
         );
-    };
+    }; 
 
     const textInputStyle =
-        "block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 sm:text-sm sm:leading-6";
+        "block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 sm:text-sm sm:leading-6"
 
     return (
         <form
@@ -66,7 +66,8 @@ export default function FromCreateBudaya({ kategoriBudayas, errors }) {
                     type="text"
                     value={nama}
                     onChange={(e) => setNama(e.target.value)}
-                    className={textInputStyle}
+                    className="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 sm:text-sm sm:leading-6"
+
                 />
                 {errors.nama && <InputError message={errors.nama} />}
             </div>
@@ -76,7 +77,8 @@ export default function FromCreateBudaya({ kategoriBudayas, errors }) {
                 <textarea
                     value={deskripsi}
                     onChange={(e) => setDeskripsi(e.target.value)}
-                    className={textInputStyle}
+                    className="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 sm:text-sm sm:leading-6"
+
                 />
                 {errors.deskripsi && <InputError message={errors.deskripsi} />}
             </div>
@@ -115,7 +117,8 @@ export default function FromCreateBudaya({ kategoriBudayas, errors }) {
                     type="text"
                     value={sumber}
                     onChange={(e) => setSumber(e.target.value)}
-                    className={textInputStyle}
+                    className="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-stone-400 sm:text-sm sm:leading-6"
+
                 />
                 {errors.sumber && <InputError message={errors.sumber} />}
             </div>

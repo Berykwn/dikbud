@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BeritaCollection;
 use App\Http\Resources\GalleryBeritaCollection;
-use App\Models\GambarBerita;
 use App\Models\Berita;
+use App\Models\GambarBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Inertia\Inertia; // Add this import statement
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class GalleryBeritaController extends Controller
 {
@@ -17,7 +18,6 @@ class GalleryBeritaController extends Controller
         $this->galleryBerita = GambarBerita::with('berita')->orderByDesc('updated_at')->paginate(8);
         $this->allGalleryBerita = GambarBerita::with('berita')->latest()->get();
         $this->beritas = Berita::latest()->get();
-
     }
 
     public function index()
@@ -45,7 +45,7 @@ class GalleryBeritaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate([ 
             'berita_id' => 'required',
             'gambar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
         ], [
@@ -56,24 +56,37 @@ class GalleryBeritaController extends Controller
             'gambar.max' => 'The thumbnail may not be greater than 2048 kilobytes.',
         ]);
 
-        $thumbnail = $request->file('gambar');
+        $gambar = $request->file('gambar');
 
-        if (!$thumbnail->isValid()) {
+        if (!$gambar->isValid()) {
             return redirect()->back()
-                ->withErrors(['gambar' => 'There was an error uploading the thumbnail. Please try again.'])
+                ->withErrors(['gambar' => 'There was an error uploading the gambar. Please try again.'])
                 ->withInput();
         }
 
-        $thumbnailName = time() . '_' . Str::slug($thumbnail->getClientOriginalName());
+        $gambarName = time() . '_' . Str::slug($gambar->getClientOriginalName());
 
-        $thumbnail->storeAs('img/gallery/beritas', $thumbnailName);
+        $gambar->storeAs('img/gallery/beritas', $gambarName);
 
-        $berita = new Berita();
-        $berita->berita_id = $request->input('berita_id');
-        $berita->thumbnail = $thumbnailName;
-        $berita->save();
+        $galleryBerita = new GambarBerita();
+        $galleryBerita->berita_id = $request->input('berita_id');
+        $galleryBerita->gambar = $gambarName;
+        $galleryBerita->save();
 
         return redirect()->route('dashboard.galleryberita')->with('message', 'The image has been successfully added.');
+    }
+
+    public function destroy(GambarBerita $gambarBerita, Request $request)
+    {
+        $gambarBerita = GambarBerita::find($request->id);
+        //cek apakah di storage ada thumbnail
+        if (Storage::exists('img/gallery/beritas' . $gambarBerita->thumbnail)) {
+            Storage::delete('img/gallery/beritas' . $gambarBerita->thumbnail);
+        }
+
+        $gambarBerita->delete();
+
+        return redirect()->route('dashboard.galleryberita')->with('message', 'Data berita berhasil dihapus!');
     }
 
 }
