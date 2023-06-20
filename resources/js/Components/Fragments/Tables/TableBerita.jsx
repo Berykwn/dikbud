@@ -14,7 +14,7 @@ export default function TableBerita({ beritas, allBeritas, pages }) {
 
     const handleDeleteConfirmationClick = () => {
         if (confirm("Apakah anda yakin akan menghapus data?") === false) {
-            window.location.href(route("dashboard.events"));
+            window.location.href(route("dashboard.berita"));
         }
     };
 

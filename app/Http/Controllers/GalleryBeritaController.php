@@ -88,5 +88,4 @@ class GalleryBeritaController extends Controller
 
         return redirect()->route('dashboard.galleryberita')->with('message', 'Data berita berhasil dihapus!');
     }
-
 }

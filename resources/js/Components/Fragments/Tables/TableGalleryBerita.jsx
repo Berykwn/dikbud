@@ -13,12 +13,12 @@ export default function TableGalleryBerita({
     const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
         galleryBeritas,
         allGalleryBeritas,
-        ["gambar"] // keyword pencarian
+        ["gambar"]
     );
 
     const handleDeleteConfirmationClick = () => {
         if (confirm("Apakah anda yakin akan menghapus data?") === false) {
-            window.location.href = route("dashboard.budaya");
+            window.location.href(route("dashboard.berita"));
         }
     };
 
@@ -42,81 +42,78 @@ export default function TableGalleryBerita({
         </>
     );
 
-    const renderTableRow = () => {
-        return (
-            <tbody>
-                {filteredData.length > 0 &&
-                    filteredData.map((item) => (
-                        <tr key={item.id} className="bg-white">
-                            <td className="bg-white">
-                                <div className="flex items-center space-x-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
+    const renderTableRow = () => (
+        <tbody>
+            {filteredData.length > 0 &&
+                filteredData.map((item) => (
+                    <tr key={item.id} className="bg-white">
+                        <td className="bg-white">
+                            <div className="flex items-center space-x-3">
+                                <div className="avatar">
+                                    <div className="mask mask-squircle w-12 h-12">
+                                        <img
+                                            src={`/storage/img/gallery/beritas/${item.gambar}`}
+                                            alt={item.gambar}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="font-bold">
+                                    {item.berita.judul}
+                                </div>
+                            </div>
+                        </td>
+                        <td className="bg-white">
+                            <div className="flex flex-wrap gap-2">
+                                <label
+                                    htmlFor={`galleryBeritaModal${item.id}`}
+                                    className="btn btn-xs bg-deep-teal border-0 hover:bg-deep-teal/80"
+                                >
+                                    Detail
+                                </label>
+                                <Link
+                                    href={route(
+                                        "dashboard.galleryberita.destroy"
+                                    )}
+                                    as="button"
+                                    method="post"
+                                    data={{ id: item.id }}
+                                    onClick={handleDeleteConfirmationClick}
+                                    className="btn btn-xs bg-indian-red hover:bg-indian-red border-none"
+                                >
+                                    Hapus
+                                </Link>
+                                <input
+                                    type="checkbox"
+                                    id={`galleryBeritaModal${item.id}`}
+                                    className="modal-toggle"
+                                />
+                                <div className="modal">
+                                    <div className="modal-box">
+                                        <h3 className="font-bold text-lg">
+                                            {item.berita.judul}
+                                        </h3>
+                                        <div className="pt-4">
                                             <img
                                                 src={`/storage/img/gallery/beritas/${item.gambar}`}
                                                 alt={item.gambar}
                                             />
                                         </div>
-                                    </div>
-                                    <div className="font-bold">
-                                        {item.berita.judul}
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="bg-white">
-                                <div className="flex flex-wrap gap-2">
-                                    {/* The button to open modal */}
-                                    <label
-                                        htmlFor={`galleryBeritaModal${item.id}`}
-                                        className="btn btn-xs bg-deep-teal border-0 hover:bg-deep-teal/80"
-                                    >
-                                        Detail
-                                    </label>
-
-                                    {/* Put this part before </body> tag */}
-                                    <input
-                                        type="checkbox"
-                                        id={`galleryBeritaModal${item.id}`}
-                                        className="modal-toggle"
-                                    />
-                                    <div className="modal">
-                                        <div className="modal-box">
-                                            <h3 className="font-bold text-lg">
-                                                {item.berita.judul}
-                                            </h3>
-                                            <div className="pt-4">
-                                                <img
-                                                    src={`/storage/img/gallery/beritas/${item.gambar}`}
-                                                    alt={item.gambar}
-                                                />
-                                            </div>
-                                            <div className="modal-action">
-                                                <label
-                                                    htmlFor={`galleryBeritaModal${item.id}`}
-                                                    className="btn"
-                                                >
-                                                    Close!
-                                                </label>
-                                            </div>
+                                        <div className="modal-action">
+                                            <label
+                                                htmlFor={`galleryBeritaModal${item.id}`}
+                                                className="btn"
+                                            >
+                                                Close!
+                                            </label>
                                         </div>
                                     </div>
-                                    <Link
-                                        href={route("dashboard.galleryberita.destroy")}
-                                        as="button"
-                                        method="post"
-                                        data={{ id: item.id }}
-                                        onClick={handleDeleteConfirmationClick}
-                                        className="btn btn-xs bg-indian-red hover:bg-indian-red border-none"
-                                    >
-                                        Hapus
-                                    </Link>
                                 </div>
-                            </td>
-                        </tr>
-                    ))}
-            </tbody>
-        );
-    };
+                            </div>
+                        </td>
+                    </tr>
+                ))}
+        </tbody>
+    );
 
     return (
         <Fragment>

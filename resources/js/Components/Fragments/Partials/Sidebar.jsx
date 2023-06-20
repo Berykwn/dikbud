@@ -100,8 +100,9 @@ const Sidebar = ({ pages }) => {
             title: "Museum Budaya",
             iconName: "museum",
             items: [
-                { title: "Table Museum", link: "dashboard.budaya" },
-                { title: "Gallery Museum", link: "dashboard.galleryberita" },
+                { title: "Table Budaya", link: "dashboard.budaya" },
+                { title: "Gallery Budaya", link: "dashboard.galleryberita" },
+                { title: "Video Budaya", link: "dashboard.galleryberita" },
             ],
         },
     ];
@@ -203,7 +204,6 @@ const Sidebar = ({ pages }) => {
                 </ul>
             </nav>
 
-            {/* Logout Button */}
             <div className="flex-grow" />
             <Link className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-slate-300 rounded-md tracking-wide">
                 <div className="mr-2">
@@ -214,7 +214,5 @@ const Sidebar = ({ pages }) => {
         </div>
     );
 };
-
-
 
 export default Sidebar;
