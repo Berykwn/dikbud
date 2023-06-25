@@ -17,15 +17,15 @@ class KategoriBudayaSeeder extends Seeder
     {
         KategoriBudaya::create([
             "nama" => "Cagar Budaya",
-            "deskripsi" => "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+            "deskripsi" => "Jelajahi cagar budaya Kabupaten Lahat, temukan keindahan sejarah yang tak ternilai!"
         ]);
         KategoriBudaya::create([
             "nama" => "Sejarah dan Tradisi",
-            "deskripsi" => "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+            "deskripsi" => "Jelajahi sejarah dan tradisi di Kabupaten Lahat. Temukan keajaiban masa lalu dan hidupkan kembali warisan budaya yang menakjubkan!"
         ]);
         KategoriBudaya::create([
             "nama" => "Kesenian",
-            "deskripsi" => "Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+            "deskripsi" => "Temukan pesona kesenian Kabupaten Lahat! Lihat dan pelajari kekayaan budaya yang menakjubkan!"
         ]);
 
     }

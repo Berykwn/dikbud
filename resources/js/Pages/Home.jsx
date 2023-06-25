@@ -8,6 +8,7 @@ import ListTeam from "@/Components/Fragments/Listdata/ListTeam";
 import LatestBerita from "@/Components/Fragments/Listdata/LatestBerita";
 import ListKategoriBudaya from "@/Components/Fragments/Listdata/ListKategoriBudaya";
 import LinkButton from "@/Components/Elements/Link/Link";
+import ListPegawai from "@/Components/Fragments/Listdata/ListPegawai";
 
 export default function Home(props) {
     const {
@@ -18,12 +19,12 @@ export default function Home(props) {
         flash,
         errors,
         carousel,
-        kategoriKebudayaan, 
+        kategoriKebudayaan,
+        pegawai,
     } = props;
 
     return (
         <MainLayout title={title} pages={pages}>
-            
             <section className="bg-off-white-gray lg:pt-6 md:pt-4 flex justify-center">
                 <div className="container mx-auto lg:px-20 md:px-8 px-0 py-2">
                     <Carousel carousel={carousel.data} />
@@ -68,13 +69,30 @@ export default function Home(props) {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap justify-center md:justify-start">
                         <div className="mx-auto">
-                            <ListTeam />
+                            <div className="flex justify-center mx-auto max-w-7xl px-6 py-8">
+                                <h1 className="text-3xl font-bold text-white text-center leading-tight font-[cursive]">
+                                    Daftar Pegawai!
+                                </h1>
+                            </div>
+                            <ListPegawai pegawais={pegawai.data} />
+                            <div className="flex justify-center py-8">
+                                <LinkButton
+                                    href={route("pegawai")}
+                                    variant="deep-teal"
+                                    size="btn-sm rounded-md"
+                                >
+                                    Lihat Semua
+                                </LinkButton>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="pt-12 pb-12 bg-off-white-gray" id="kritikdansaran">
+            <section
+                className="pt-12 pb-12 bg-off-white-gray"
+                id="kritikdansaran"
+            >
                 <div className="container mx-auto px-2">
                     <PageDescription
                         key="home-kontak"

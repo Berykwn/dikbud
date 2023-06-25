@@ -8,7 +8,7 @@ import Linked from "@/Components/Elements/Link/Link";
 import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
 
-export default function FormCreatePegawai({ errors, auth }) {
+export default function FormCreatePegawai({ errors }) {
     const [nama, setNama] = useState("");
     const [jabatan, setJabatan] = useState("");
     const [pesan, setPesan] = useState("");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PegawaiCollection;
 use Illuminate\Http\Request;
 use App\Http\Resources\CarouselCollection;
 use App\Http\Resources\EventCollection;
@@ -11,6 +12,8 @@ use App\Models\Event;
 use App\Models\Berita;
 use App\Models\Kritik;
 use App\Models\KategoriBudaya;
+use App\Models\Pegawai;
+
 
 use Inertia\Inertia;
 
@@ -22,6 +25,7 @@ class HomeController extends Controller
         $event = Event::latest()->take(4)->get();
         $berita = Berita::latest()->take(3)->get();
         $kategoriKebudayaan = KategoriBudaya::all();
+        $pegawai = Pegawai::latest()->take(4)->get();
 
         return Inertia::render('Home', [
             'pages' => 'Home',
@@ -29,7 +33,8 @@ class HomeController extends Controller
             'carousel' => new CarouselCollection($carousel),
             'event' => new EventCollection($event),
             'berita' => new BeritaCollection($berita),
-            'kategoriKebudayaan' => $kategoriKebudayaan
+            'kategoriKebudayaan' => $kategoriKebudayaan,
+            'pegawai' => new PegawaiCollection($pegawai),
         ]);
     }
 

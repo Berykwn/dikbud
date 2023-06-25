@@ -4,7 +4,6 @@ import FormSearch from "../Form/FormSearch";
 import DescriptionPage from "../Partials/DescriptionPage";
 
 export default function ListPegawai({ pegawais, allPegawais, pages, url }) {
-    console.log(pegawais);
     const [searchKeyword, setSearchKeyword] = useState("");
     const [isSearching, setIsSearching] = useState(false);
 
@@ -27,7 +26,7 @@ export default function ListPegawai({ pegawais, allPegawais, pages, url }) {
 
     const renderPageHeader = () => {
         const data = {
-            title: "Struktur Organisasi Dinas Pendidikan dan Kebudayaan Kabupaten Lahat",
+            title: "Daftar Pegawai.",
         };
 
         return (
@@ -46,7 +45,7 @@ export default function ListPegawai({ pegawais, allPegawais, pages, url }) {
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {renderPageHeader()}
+            {pages === "Pegawai" && renderPageHeader()}
             {filteredPegawais.length > 0 ? (
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <div className="grid grid-cols-1 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">

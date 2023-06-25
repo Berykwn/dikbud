@@ -90,7 +90,7 @@ export default function FormFeedback({ message, validateError }) {
                 <PrimaryButton
                     onClick={() => handleSubmit()}
                     type="submit"
-                    className="bg-cyan-800 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                     Kirim
                 </PrimaryButton>

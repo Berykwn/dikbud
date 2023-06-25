@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Carousel;
 
 
 class CarouselSeeder extends Seeder
@@ -15,17 +15,19 @@ class CarouselSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('carousels')->insert([
-                'name' => 'carousel-1',
-                'img' => 'img/carouselku-1.png',
-            ]);
-        DB::table('carousels')->insert([
-                'name' => 'carousel-2',
-                'img' => 'img/carouselku-2.png',
-            ]);
-        DB::table('carousels')->insert([
-                'name' => 'carousel-3',
-                'img' => 'img/carouselku-1.png',
-            ]);
+       Carousel::create([
+        'name' => 'banner-1',
+        'img' => 'img/banner1.png'
+       ]);
+
+       Carousel::create([
+        'name' => 'banner-2',
+        'img' => 'img/banner2.png'
+       ]);
+
+       Carousel::create([
+        'name' => 'banner-3',
+        'img' => 'img/banner3.png'
+       ]);
     }
 }

@@ -53,7 +53,7 @@ export default function TableEvents({ events, allEvents, pages }) {
                                             <img
                                                 src={
                                                     "/storage/img/events/" +
-                                                    item.gambar
+                                                    item.thumbnail
                                                 }
                                                 alt="Event Image"
                                             />

@@ -2,11 +2,15 @@ import Linked from "@/Components/Elements/Link/Link";
 import DescriptionPage from "../Partials/DescriptionPage";
 
 const renderPageHeader = () => {
-    const title = "Pelajari Kebudayaan Kabupaten Lahat."
-    return (
-        <DescriptionPage key="event-list" title={title} />
-    );
-}
+    const title = "Pelajari Kebudayaan Kabupaten Lahat.";
+    return <DescriptionPage key="event-list" title={title} />;
+};
+
+const data = [
+    { src: "img/cagarbudaya.jpg" },
+    { src: "img/sejarah.jpeg" },
+    { src: "img/kesenian.jpeg" },
+];
 
 export default function ListKategoriBudaya({ kategoriKebudayaan }) {
     return (
@@ -24,7 +28,7 @@ export default function ListKategoriBudaya({ kategoriKebudayaan }) {
                         <div className="flex-shrink-0 w-56 h-48">
                             <img
                                 className="object-cover w-full h-full rounded-lg"
-                                src="https://dummyimage.com/600x400/000/fff"
+                                src={data[index].src} // Use the src value from the data array
                                 alt="Card Image"
                             />
                         </div>

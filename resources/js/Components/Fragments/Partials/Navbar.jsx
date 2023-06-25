@@ -1,13 +1,16 @@
 import { Link } from "@inertiajs/react";
 import Icon from "../../Elements/Icon/Icon";
-import ApplicationLogo from "@/Components/Elements/Logo/ApplicationLogo";
 
 const NavbarLogo = () => {
     return (
-        <div className="inline-flex lg:px-20 pt-4">
-            <ApplicationLogo className="w-10 h-12 fill-current text-slate-50 mt-3 lg:mt-2 md:mt-2" />
-            <Link className="link link-hover normal-case text-slate-700 text-xl ml-3 mt-1 font-[baskerville]">
-                Kebudayaan <br /> Kabupaten Lahat
+        <div className="inline-flex lg:px-20 py-2">
+            <img
+                src="http://127.0.0.1:8000/img/tutwuri.png"
+                alt="Description of the image"
+                className="h-16 object-cover"
+            />
+            <Link className="link link-hover normal-case text-slate-700 text-xl ml-3 mt-1">
+                Dikbud Kab. Lahat <br /> Bidang Kebudayaan
             </Link>
         </div>
     );
@@ -44,7 +47,7 @@ const NavbarDropdownMenu = ({ pages }) => {
                 </li>
                 <li>
                     <Link
-                        href={route("berita")}  
+                        href={route("berita")}
                         className={
                             pages === "Berita" || pages === "Detail Berita"
                                 ? "text-slate-500"
@@ -73,7 +76,7 @@ const NavbarDropdownMenu = ({ pages }) => {
 const NavbarMenu = ({ pages }) => {
     return (
         <div className="navbar-end hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 text-slate-50">
+            <ul className="menu menu-horizontal px-1 text-slate-50 text-lg">
                 <li
                     className={`text-slate-700 ${
                         pages === "Home"
