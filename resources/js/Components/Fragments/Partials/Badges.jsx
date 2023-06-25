@@ -1,10 +1,9 @@
+import React, { Fragment } from "react";
 import FormattedDate from "../../Elements/FormattedDate";
-import { Fragment } from "react";
 
 const badgeColors = {
     Event: "bg-cornflower-blue",
     Berita: "bg-teal-green",
-    Museum: "bg-indian-red",
     Kritik: "bg-cinnabar",
 };
 

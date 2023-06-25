@@ -1,5 +1,5 @@
-import DescriptionPage from "../Partials/DescriptionPage";
 import React, { useState } from "react";
+import DescriptionPage from "../Partials/DescriptionPage";
 import AlertNotFound from "../../Elements/Alert/AlertNotFounddd";
 import FormSearch from "../Form/FormSearch";
 import CardBudaya from "../Card/CardBudaya";
@@ -32,7 +32,7 @@ export default function ListBudaya({
         : budayas;
 
     const renderPageHeader = () => {
-        const pageDesc = {
+        const data = {
             title: "Kebudayaan Kabupaten Lahat.",
             desc: "Jangan lewatkan kesempatan untuk melihat koleksi yang menakjubkan di Museum Daerah Kabupaten Lahat dan merasakan kekayaan sejarah kita!",
         };
@@ -42,9 +42,8 @@ export default function ListBudaya({
                 <DescriptionPage
                     key="home-berita"
                     isDark={isDark}
-                    title={pageDesc.title}
-                    desc={pageDesc.desc}
                     url={url}
+                    {...data}
                 />
                 {pages === "Budaya" && (
                     <div className="w-3/5 mx-auto">
@@ -64,7 +63,7 @@ export default function ListBudaya({
 
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {renderPageHeader()}
+            {pages === "Budaya" && renderPageHeader()}
             {filteredBudayas.length > 0 ? (
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <div className="grid grid-cols-1 pt-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
@@ -72,9 +71,11 @@ export default function ListBudaya({
                             <div key={budaya.id}>
                                 <CardBudaya
                                     {...budaya}
-                                    url={route("berita.detail")}
+                                    kategori = {budaya.kategori_budaya.nama}
+                                    url={route("budaya.detail")}
                                     isDark={isDark}
                                 />
+                                
                             </div>
                         ))}
                     </div>

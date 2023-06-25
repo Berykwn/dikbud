@@ -9,6 +9,10 @@ class GambarBerita extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'berita_id',
+        'gambar'
+    ];
     public function berita()
     {
         return $this->belongsTo(Berita::class);

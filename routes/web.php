@@ -3,13 +3,14 @@
 use App\Http\Controllers\BudayaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryBeritaController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GambarBudayaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\MuseumController;
 use Inertia\Inertia;
 
 /*
@@ -59,7 +60,13 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [GalleryBeritaController::class, 'store'])->name('dashboard.galleryberita.store');
             Route::post('/delete', [GalleryBeritaController::class, 'destroy'])->name('dashboard.galleryberita.destroy');
         });
-        
+
+        Route::prefix('gallery/budaya')->group(function () {
+            Route::get('/', [GambarBudayaController::class, 'index'])->name('dashboard.gallery.budaya');
+            Route::get('/create', [GambarBudayaController::class, 'create'])->name('dashboard.gallery.budaya.create');
+            Route::post('/create', [GambarBudayaController::class, 'store'])->name('dashboard.gallery.budaya.store');
+            Route::post('/delete', [GambarBudayaController::class, 'destroy'])->name('dashboard.gallery.budaya.destroy');
+        });
 
         Route::prefix('budaya')->group(function () {
             Route::get('/', [BudayaController::class, 'index'])->name('dashboard.budaya');
@@ -70,6 +77,15 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/update/{id}', [BudayaController::class, 'update'])->name('dashboard.budaya.update');
             Route::post('/delete', [BudayaController::class, 'destroy'])->name('dashboard.budaya.destroy');
         });
+
+        Route::prefix('pegawai')->group(function () {
+            Route::get('/', [PegawaiController::class, 'index'])->name('dashboard.pegawai');
+            Route::get('/create', [PegawaiController::class, 'create'])->name('dashboard.pegawai.create');
+            Route::post('/create', [PegawaiController::class, 'store'])->name('dashboard.pegawai.store');
+            Route::get('/edit', [PegawaiController::class, 'edit'])->name('dashboard.pegawai.edit');
+            Route::post('/update/{id}', [PegawaiController::class, 'update'])->name('dashboard.pegawai.update');
+            Route::post('/delete', [PegawaiController::class, 'destroy'])->name('dashboard.pegawai.destroy');
+        });
     });
 });
 
@@ -77,10 +93,9 @@ Route::get('/events', [EventController::class, 'getAllEvent'])->name('event');
 Route::get('/detailevent', [EventController::class, 'detailEventPage'])->name('event.detail');
 Route::get('/berita', [BeritaController::class, 'getAllBerita'])->name('berita');
 Route::get('/detailberita', [BeritaController::class, 'detailBeritaPage'])->name('berita.detail');
-Route::get('/museum', [MuseumController::class, 'getAllMuseum'])->name('museum');
-Route::get('/detailmuseum', [MuseumController::class, 'detailMuseumPage'])->name('museum.detail');
 Route::get('/budaya', [BudayaController::class, 'getBudaya'])->name('budaya');
-
+Route::get('/detailbudaya', [BudayaController::class, 'detailBudayaPage'])->name('budaya.detail');
+Route::get('/pegawai', [PegawaiController::class, 'pegawaiPage'])->name('pegawai');
 
 Route::post('/kritik-saran', [HomeController::class, 'kritikSaran'])->name('home.kritiksaran');
 

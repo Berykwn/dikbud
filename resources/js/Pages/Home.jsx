@@ -15,15 +15,15 @@ export default function Home(props) {
         pages,
         event,
         berita,
-        museum,
         flash,
         errors,
         carousel,
-        kategoriKebudayaan,
+        kategoriKebudayaan, 
     } = props;
 
     return (
         <MainLayout title={title} pages={pages}>
+            
             <section className="bg-off-white-gray lg:pt-6 md:pt-4 flex justify-center">
                 <div className="container mx-auto lg:px-20 md:px-8 px-0 py-2">
                     <Carousel carousel={carousel.data} />
@@ -43,12 +43,12 @@ export default function Home(props) {
                             Ikuti Event Kebudayaan Terdekat!
                         </h1>
                     </div>
-                    <LatestEvent events={event.data} isDark/>
+                    <LatestEvent events={event.data} isDark />
                     <div className="flex justify-center py-8">
                         <LinkButton
                             href={route("event")}
-                            variant={"deep-teal"}
-                            size={"btn-sm rounded-md"}
+                            variant="deep-teal"
+                            size="btn-sm rounded-md"
                         >
                             Lihat Semua Event
                         </LinkButton>
@@ -74,10 +74,7 @@ export default function Home(props) {
                 </div>
             </section>
 
-            <section
-                className="pt-12 pb-12 bg-off-white-gray"
-                id="kritikdansaran"
-            >
+            <section className="pt-12 pb-12 bg-off-white-gray" id="kritikdansaran">
                 <div className="container mx-auto px-2">
                     <PageDescription
                         key="home-kontak"

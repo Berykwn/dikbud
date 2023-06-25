@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\KritikSaranCollection;
-use App\Models\Museum;
 use App\Models\Event;
 use App\Models\Berita;
 use App\Models\Kritik;
@@ -18,14 +17,12 @@ class DashboardController extends Controller
         $latestData = [
             'Berita' => Berita::latest('updated_at')->first(['updated_at']),
             'Event' => Event::latest('updated_at')->first(['updated_at']),
-            'Museum' => Museum::latest('updated_at')->first(['updated_at']),
             'Kritik' => Kritik::latest('updated_at')->first(['updated_at']),
         ];
 
         $countData = [
             'Berita' => Berita::count(),
             'Event' => Event::count(),
-            'Museum' => Museum::count(),
             'Kritik' => Kritik::count(),
         ];
 

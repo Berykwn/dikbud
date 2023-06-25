@@ -7,12 +7,13 @@ use App\Http\Resources\EventCollection;
 use App\Models\Event;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
-class EventController extends Controller 
+class EventController extends Controller
 {
     private $event;
     private $allEvent;
- 
+
     public function getAllEvent()
     {
         $this->event = Event::orderByDesc('updated_at')->paginate(8);
@@ -46,7 +47,7 @@ class EventController extends Controller
     {
         $this->event = Event::orderByDesc('updated_at')->paginate(8);
         $this->allEvent = Event::latest()->get();
-        
+
         return Inertia::render('Adminpage/Events/Events', [
             'pages' => 'Events',
             'title' => 'Dashboard Events',
@@ -65,37 +66,42 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validatedData = $request->validate([
             'judul_event' => 'required',
             'deskripsi' => 'required',
             'tempat' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
-            'gambar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail' => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'kategori' => 'required',
+        ], [
+            'required' => 'The :attribute field is required.',
+            'thumbnail.required' => 'The thumbnail field is required.',
+            'thumbnail.file' => 'The thumbnail must be a file.',
+            'thumbnail.mimes' => 'The thumbnail must be a JPEG, PNG, or JPG file.',
+            'thumbnail.max' => 'The thumbnail may not be greater than 2048 kilobytes.',
         ]);
 
-        if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-            $gambarName = time() . '_' . $gambar->getClientOriginalName();
+        try {
+            $thumbnailFile = $request->file('thumbnail');
+            $thumbnailName = time() . '_' . Str::slug($thumbnailFile->getClientOriginalName());
+            $thumbnailFile->storeAs('img/events', $thumbnailName);
 
-            $gambar->storeAs('img/events', $gambarName); // Simpan gambar ke direktori yang ditentukan
+            $eventData = [
+                'judul_event' => $validatedData['judul_event'],
+                'deskripsi' => $validatedData['deskripsi'],
+                'tempat' => $validatedData['tempat'],
+                'tanggal_mulai' => $validatedData['tanggal_mulai'],
+                'tanggal_selesai' => $validatedData['tanggal_selesai'],
+                'thumbnail' => $thumbnailName,
+                'kategori' => $validatedData['kategori'],
+            ];
 
-            $event = new Event();
-            $event->judul_event = $request->input('judul_event');
-            $event->deskripsi = $request->input('deskripsi');
-            $event->tempat = $request->input('tempat');
-            $event->tanggal_mulai = $request->input('tanggal_mulai');
-            $event->tanggal_selesai = $request->input('tanggal_selesai');
-            $event->gambar = $gambarName; // Update URL gambar
-            $event->kategori = $request->input('kategori');
-            $event->save();
+            Event::create($eventData);
 
             return redirect()->route('dashboard.events')->with('message', 'Data event berhasil ditambahkan');
-        } else {
-            return redirect()->back()
-                ->withErrors(['gambar' => 'Berkas gambar tidak ditemukan atau tidak valid. Pastikan memilih berkas gambar dengan benar, dalam format JPEG atau PNG, dan ukuran maksimal 2MB'])
-                ->withInput();
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload gambar.');
         }
     }
 
@@ -128,10 +134,10 @@ class EventController extends Controller
             'title' => 'Edit Events',
         ]);
     }
- 
+
     public function update(Request $request, $id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
 
         $validatedData = $request->validate([
             'judul_event' => 'required|max:255',
@@ -139,23 +145,32 @@ class EventController extends Controller
             'tempat' => 'required|max:255',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
-            'gambar' => 'nullable|max:2048',
+            'thumbnail' => 'nullable|max:2048',
             'kategori' => 'required|max:255',
         ]);
 
-        $event->update($validatedData);
+        try {
+            $event->update($validatedData);
 
-        if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-            if ($gambar) {
-                $namaGambar = time() . '_' . $gambar->getClientOriginalName();
-                $gambar->storeAs('img/events', $namaGambar); // Simpan gambar ke direktori yang ditentukan
-                $event->gambar = $namaGambar;
-                $event->save();
+            if ($request->hasFile('thumbnail')) {
+                $this->handleThumbnailUpload($event, $request->file('thumbnail'));
             }
+
+            return redirect()->route('dashboard.events')->with('message', 'Data event berhasil diperbarui');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui data event.');
         }
-        return to_route('dashboard.events')->with('message', 'Data Event berhasil diperbarui');
     }
+
+    private function handleThumbnailUpload(Event $event, $thumbnail)
+    {
+        $thumbnailName = time() . '_' . $thumbnail->getClientOriginalName();
+        $thumbnail->storeAs('img/events', $thumbnailName);
+
+        $event->thumbnail = $thumbnailName;
+        $event->save();
+    }
+
 
     public function destroy(Event $event, Request $request)
     {

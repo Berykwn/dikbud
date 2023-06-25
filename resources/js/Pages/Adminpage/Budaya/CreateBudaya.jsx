@@ -15,16 +15,15 @@ export default function CreateBerita(props) {
                     <div className="alert rounded-md my-2 lg:w-2/3">
                         <div>
                             <span className="text-sm">
-                                Tambahkan acara baru dengan mudah dan cepat! Isi
-                                detail acara seperti judul, tanggal, deskripsi,
-                                lokasi, dan kontak yang relevan.
+                                Tambahkan data budaya baru dengan mudah dan
+                                cepat dengan mengisi form dibawah.
                             </span>
                         </div>
                     </div>
                     <FormCreateBudaya
                         message={flash.message}
                         errors={errors}
-                        kategoriBudayas = {kategoriBudaya}
+                        kategoriBudayas={kategoriBudaya}
                         authName={auth.user.name}
                     />
                 </div>

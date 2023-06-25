@@ -53,7 +53,7 @@ export default function ListKategoriBudaya({ kategoriKebudayaan }) {
             </div>
             <div className="flex justify-center py-8">
                 <Linked
-                    href={route("museum")}
+                    href={route("budaya")}
                     variant={"deep-teal"}
                     size={"btn-sm rounded-md"}
                 >

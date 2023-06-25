@@ -1,19 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { router } from "@inertiajs/react";
-import ReactQuill from "react-quill";
+
 import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
-import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import Linked from "@/Components/Elements/Link/Link";
+import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
 
 export default function FormEditEvent({ event, errors }) {
     const [judul_event, setJudulEvent] = useState(event.judul_event || "");
     const [deskripsi, setDeskripsi] = useState(event.deskripsi || "");
     const [tempat, setTempat] = useState(event.tempat || "");
-    const [tanggal_mulai, setTanggalMulai] = useState(
+    const [tanggal_mulai, setTanggalMulai] = useState( 
         event.tanggal_mulai || ""
     );
     const [tanggal_selesai, setTanggalSelesai] = useState(
@@ -40,10 +41,10 @@ export default function FormEditEvent({ event, errors }) {
             "tanggal_selesai",
             tanggal_selesai || event.tanggal_selesai
         );
-        formData.append("gambar", selectedImage || event.gambar);
+        formData.append("thumbnail", selectedImage || event.thumbnail);
         formData.append("kategori", kategori || event.kategori);
 
-        router.post(`/dashboard/event/update/${event.id}`, formData);
+        router.post(`/dashboard/events/update/${event.id}`, formData);
     };
 
     const renderInputLabel = (htmlFor, value) => {
@@ -154,18 +155,18 @@ export default function FormEditEvent({ event, errors }) {
                     src={
                         selectedImage
                             ? URL.createObjectURL(selectedImage)
-                            : "/storage/img/events/" + event.gambar
+                            : "/storage/img/events/" + event.thumbnail
                     }
                     alt="huhuy"
                     className="object-cover w-1/2 h-1/2 rounded-md mb-2"
                 />
                 <TextInput
                     type="file"
-                    id="gambar"
-                    name="gambar"
+                    id="thumbnail"
+                    name="thumbnail"
                     onChange={handleChange}
                 />
-                <InputError message={errors.gambar} />
+                <InputError message={errors.thumbnail} />
             </div>
             <div className="flex justify-start gap-1 mt-4">
                 <Linked

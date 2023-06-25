@@ -19,7 +19,6 @@ return new class extends Migration {
             $table->foreign('berita_id')->references('id')->on('beritas')->onDelete('cascade');
             $table->timestamps();
         });
-
     }
 
     /**

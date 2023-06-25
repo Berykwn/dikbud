@@ -1,13 +1,14 @@
-import ReactQuill from "react-quill";
+import React, { useState } from "react";
+import { router } from "@inertiajs/react";
+
 import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
 import Linked from "@/Components/Elements/Link/Link";
 import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
-import { useState } from "react";
-import { router } from "@inertiajs/react";
 
 export default function FromEditBudaya({ budaya, kategoriBudayas, errors }) {
     console.log(budaya);

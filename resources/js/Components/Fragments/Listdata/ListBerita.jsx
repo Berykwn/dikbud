@@ -26,7 +26,7 @@ const ListBerita = ({ beritas, allBeritas, pages, isDark, url }) => {
         : beritas;
 
     const renderPageHeader = () => {
-        const pageDesc = {
+        const data = {
             title: "Berita Kebudayaan Kabupaten Lahat.",
             desc: "Temukan berita terkini seputar kebudayaan Kabupaten Lahat dan jangan lewatkan setiap ragam kegiatan budaya yang menarik untuk diikuti dan diapresiasi.",
         };
@@ -34,11 +34,10 @@ const ListBerita = ({ beritas, allBeritas, pages, isDark, url }) => {
         return (
             <div className="py-6">
                 <DescriptionPage
-                    key="home-berita"
+                    key="berita-page"
                     isDark={isDark}
-                    title={pageDesc.title}
-                    desc={pageDesc.desc}
                     url={url} 
+                    {...data}
                 />
                 {pages === "Berita" && (
                     <div className="w-3/5 mx-auto">
@@ -62,10 +61,10 @@ const ListBerita = ({ beritas, allBeritas, pages, isDark, url }) => {
             {filteredBeritas.length > 0 ? (
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <div className="grid grid-cols-1 pt-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
-                        {filteredBeritas.map((berita) => (
-                            <div key={berita.id}>
+                        {filteredBeritas.map((item) => (
+                            <div key={item.id}>
                                 <CardBerita
-                                    {...berita}
+                                    {...item}
                                     url={route("berita.detail")}
                                     isDark={isDark}
                                 />

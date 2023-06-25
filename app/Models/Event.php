@@ -15,7 +15,7 @@ class event extends Model
         'tempat',
         'tanggal_mulai',
         'tanggal_selesai',
-        'gambar',
+        'thumbnail',
         'kategori',
     ];
 }

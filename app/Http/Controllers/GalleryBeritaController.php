@@ -25,7 +25,7 @@ class GalleryBeritaController extends Controller
         $this->fetchGalleryBeritaData();
 
         return Inertia::render('Adminpage/Berita/Gallery/GalleryBerita', [
-            'pages' => 'Gallery Berita',
+            'pages' => 'Berita',
             'title' => 'Gallery Berita',
             'galleryBerita' => new GalleryBeritaCollection($this->galleryBerita),
             'allGalleryBerita' => new GalleryBeritaCollection($this->allGalleryBerita),
@@ -37,7 +37,7 @@ class GalleryBeritaController extends Controller
         $this->fetchGalleryBeritaData();
 
         return Inertia::render('Adminpage/Berita/Gallery/CreateGalleryBerita', [
-            'pages' => 'Gallery Berita',
+            'pages' => 'Berita',
             'title' => 'Gallery Berita',
             'berita' => new BeritaCollection($this->beritas)
         ]);
@@ -45,7 +45,7 @@ class GalleryBeritaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([ 
+        $validatedData = $request->validate([
             'berita_id' => 'required',
             'gambar' => 'required|file|mimes:jpeg,png,jpg|max:2048',
         ], [
@@ -56,25 +56,27 @@ class GalleryBeritaController extends Controller
             'gambar.max' => 'The thumbnail may not be greater than 2048 kilobytes.',
         ]);
 
-        $gambar = $request->file('gambar');
+        try {
+            $gambar = $validatedData['gambar'];
+            $gambarName = time() . '_' . Str::slug($gambar->getClientOriginalName());
 
-        if (!$gambar->isValid()) {
-            return redirect()->back()
-                ->withErrors(['gambar' => 'There was an error uploading the gambar. Please try again.'])
-                ->withInput();
+            if (!$gambar->storeAs('img/gallery/beritas', $gambarName)) {
+                return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload gambar.');
+            }
+
+            $galleryBeritaData = [
+                'berita_id' => $validatedData['berita_id'],
+                'gambar' => $gambarName,
+            ];
+
+            GambarBerita::create($galleryBeritaData);
+
+            return redirect()->route('dashboard.galleryberita')->with('message', 'The image has been successfully added.');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload gambar.');
         }
-
-        $gambarName = time() . '_' . Str::slug($gambar->getClientOriginalName());
-
-        $gambar->storeAs('img/gallery/beritas', $gambarName);
-
-        $galleryBerita = new GambarBerita();
-        $galleryBerita->berita_id = $request->input('berita_id');
-        $galleryBerita->gambar = $gambarName;
-        $galleryBerita->save();
-
-        return redirect()->route('dashboard.galleryberita')->with('message', 'The image has been successfully added.');
     }
+
 
     public function destroy(GambarBerita $gambarBerita, Request $request)
     {

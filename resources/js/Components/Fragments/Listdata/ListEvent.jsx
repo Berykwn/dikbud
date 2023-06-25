@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AlertNotFound from "../../Elements/Alert/AlertNotFounddd";
 import FormSearch from "../Form/FormSearch";
 import CardEvent from "../Card/CardEvent";
@@ -35,9 +35,8 @@ export default function ListEvent({ events, allEvents, pages, url }) {
             <div className="py-6">
                 <DescriptionPage
                     key="event-list"
-                    title={data.title}
-                    desc={data.desc}
                     url={url}
+                    {...data}
                 />
                 <div className="w-3/5 mx-auto">
                     <FormSearch
@@ -54,7 +53,7 @@ export default function ListEvent({ events, allEvents, pages, url }) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {renderPageHeader()}
             {filteredEvents.length > 0 ? (
-                <div className="mx-auto max-w-7xl px-6 lg:px-10">
+                <div className="mx-auto max-w-7xl px-6 lg:px-10"> 
                     <div className="grid grid-cols-1 pt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
                         {filteredEvents.map((event) => (
                             <div key={event.id} className="block">

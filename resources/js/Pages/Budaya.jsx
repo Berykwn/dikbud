@@ -14,7 +14,6 @@ export default function Budaya({ title, pages, budaya, allBudaya }) {
                         budayas={budayas}
                         allBudayas={allBudayas}
                         pages={pages}
-                        isDark={false}
                     />
                     <div className="flex justify-center mt-4">
                         <Paginator meta={budaya?.meta} />

@@ -4,14 +4,9 @@ import ApplicationLogo from "@/Components/Elements/Logo/ApplicationLogo";
 
 const NavbarLogo = () => {
     return (
-        <div className="inline-flex mt-2 ml-2">
-            <img
-                src="http://127.0.0.1:8000/img/wonderful.png"
-                alt="Description of the image"
-                className="h-14 object-cover"
-            />
-            <ApplicationLogo className="w-8 h-10 fill-current text-slate-50 mt-3 lg:mt-2 md:mt-2" />
-            <Link className="link link-hover normal-case text-slate-700 text-lg ml-3 font-[Gabriola]">
+        <div className="inline-flex lg:px-20 pt-4">
+            <ApplicationLogo className="w-10 h-12 fill-current text-slate-50 mt-3 lg:mt-2 md:mt-2" />
+            <Link className="link link-hover normal-case text-slate-700 text-xl ml-3 mt-1 font-[baskerville]">
                 Kebudayaan <br /> Kabupaten Lahat
             </Link>
         </div>
@@ -49,9 +44,9 @@ const NavbarDropdownMenu = ({ pages }) => {
                 </li>
                 <li>
                     <Link
-                        href={route("berita")}
+                        href={route("berita")}  
                         className={
-                            pages === "Berita" && pages === "Detail Berita"
+                            pages === "Berita" || pages === "Detail Berita"
                                 ? "text-slate-500"
                                 : ""
                         }
@@ -99,14 +94,14 @@ const NavbarMenu = ({ pages }) => {
                 </li>
                 <li
                     className={`text-slate-700 ${
-                        pages === "Berita"
+                        pages === "Berita" || pages === "Detail Berita"
                             ? "border-b-4 border-deep-teal hover:border-0"
                             : ""
                     }`}
                 >
                     <Link href={route("berita")}>Berita</Link>
                 </li>
-                <li 
+                <li
                     className={`text-slate-700 ${
                         pages === "Museum"
                             ? "border-b-4 border-deep-teal hover:border-0"
@@ -115,10 +110,14 @@ const NavbarMenu = ({ pages }) => {
                 >
                     <Link href={route("budaya")}>Museum Budaya</Link>
                 </li>
-                <li>
-                    <a className="text-slate-700" href="/#kritikdansaran">
-                        Struktur Oraganisasi
-                    </a>
+                <li
+                    className={`text-slate-700 ${
+                        pages === "Pegawai"
+                            ? "border-b-4 border-deep-teal hover:border-0"
+                            : ""
+                    }`}
+                >
+                    <Link href={route("pegawai")}>Stuktur Organisasi</Link>
                 </li>
                 <li>
                     <a className="text-slate-700" href="/#kritikdansaran">

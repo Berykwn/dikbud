@@ -1,4 +1,4 @@
-import Linked from "@/Components/Elements/Link/Link";
+import MyLink from "@/Components/Elements/Link/Link";
 import Paginator from "@/Components/Fragments/Partials/Paginator";
 import TableBerita from "@/Components/Fragments/Tables/TableBerita";
 import AdminLayout from "@/Layouts/AdminLayout";
@@ -27,15 +27,15 @@ export default function Berita({
                                 Anda dapat mencari, menambah, mengubah, melihat
                                 detail, dan menghapus data. Temukan berita
                                 menarik, tambahkan yang baru, perbarui
-                                informasi, jelajahi detail acara, dan hapus yang
+                                informasi, jelajahi detail berita, dan hapus yang
                                 tidak relevan. <br />
-                                <Linked
+                                <MyLink
                                     href={route("dashboard.berita.create")}
                                     variant={"dodger-blue"}
                                     size={"btn-xs mt-2"}
                                 >
                                     Tambah Berita
-                                </Linked>
+                                </MyLink>
                             </span>
                         </div>
                     </div>

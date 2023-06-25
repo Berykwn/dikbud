@@ -1,13 +1,14 @@
-import ReactQuill from "react-quill";
+import React, { useState } from "react";
+import { router } from "@inertiajs/react";
+
 import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
-import { useState } from "react";
 import Linked from "@/Components/Elements/Link/Link";
 import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
-import { router } from "@inertiajs/react";
 
 export default function FormCreateBerita({ errors, auth }) {
     const [judul, setJudul] = useState("");
@@ -93,7 +94,6 @@ export default function FormCreateBerita({ errors, auth }) {
                     value={sumber}
                     onChange={(e) => setSumber(e.target.value)}
                     className="block w-full sm:text-sm sm:leading-6"
-
                 />
                 {errors.sumber && <InputError message={errors.sumber} />}
             </div>
@@ -129,7 +129,7 @@ export default function FormCreateBerita({ errors, auth }) {
             </div>
             <div className="flex justify-start gap-1 mt-4">
                 <Linked
-                    href={route("dashboard.events")}
+                    href={route("dashboard.berita")}
                     variant={"secondary"}
                     size={"btn-sm rounded-md"}
                 >

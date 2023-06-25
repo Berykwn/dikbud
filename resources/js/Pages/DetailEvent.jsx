@@ -3,8 +3,7 @@ import FormattedDate from "@/Components/Elements/FormattedDate";
 import MainLayout from "@/Layouts/MainLayout";
 import Linked from "@/Components/Elements/Link/Link";
 
-export default function DetailEvent(props) {
-    const { title, pages, event, eventDetail } = props;
+export default function DetailEvent({ title, pages, event, eventDetail }) {
     return (
         <MainLayout title={title} pages={pages}>
             <section className="bg-off-white-gray">
@@ -67,7 +66,6 @@ export default function DetailEvent(props) {
                             href={route("event")}
                             variant={"deep-teal"}
                             size={"btn-sm rounded-md"}
-                            // className="bg-steel-blue hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-lg"
                         >
                             Lihat lainnya
                         </Linked>

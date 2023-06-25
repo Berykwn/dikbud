@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Link } from "@inertiajs/react";
 import AlertNotFoundd from "@/Components/Elements/Alert/AlertNotFound";
 import FormSearch from "@/Components/Fragments/Form/FormSearch";
-import Linked from "@/Components/Elements/Link/Link";
+import MyLink from "@/Components/Elements/Link/Link";
 import useSearch from "@/Components/Elements/UseSearch";
 
 export default function TableBerita({ beritas, allBeritas, pages }) {
@@ -67,7 +67,7 @@ export default function TableBerita({ beritas, allBeritas, pages }) {
                             <td className="bg-white">{item.penulis}</td>
                             <td className="bg-white">
                                 <div className="flex flex-wrap gap-2">
-                                    <Linked
+                                    <MyLink
                                         href={route("dashboard.berita.edit")}
                                         as="button"
                                         method="get"
@@ -76,8 +76,8 @@ export default function TableBerita({ beritas, allBeritas, pages }) {
                                         size={"btn-xs"}
                                     >
                                         Edit
-                                    </Linked>
-                                    <Linked
+                                    </MyLink>
+                                    <MyLink
                                         href={route("dashboard.berita.detail")}
                                         as="button"
                                         method="get"
@@ -86,7 +86,7 @@ export default function TableBerita({ beritas, allBeritas, pages }) {
                                         size={"btn-xs"}
                                     >
                                         Detail
-                                    </Linked>
+                                    </MyLink>
                                     <Link
                                         href={route("dashboard.berita.destroy")}
                                         as="button"

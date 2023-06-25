@@ -16,8 +16,8 @@ const DetailEvent = ({ title, pages, eventDetail, auth }) => {
                         <div>
                             <Icon name="info" />
                             <span className="text-sm">
-                                Ini adalah tampilan ketika user berada di menu
-                                Detail Event
+                                Ini adalah tampilan ketika pengguna berada di
+                                menu Detail Event.
                             </span>
                         </div>
                     </div>

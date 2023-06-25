@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { Link } from "@inertiajs/react";
 import AlertNotFound from "@/Components/Elements/Alert/AlertNotFound";
 import FormSearch from "@/Components/Fragments/Form/FormSearch";
-import LinkButton from "@/Components/Elements/Link/Link";
 import useSearch from "@/Components/Elements/UseSearch";
 
 export default function TableGalleryBerita({

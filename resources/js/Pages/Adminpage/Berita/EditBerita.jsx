@@ -14,7 +14,7 @@ export default function Editberita({
         <AdminLayout
             title={title}
             pages={pages} 
-            auth={auth.user}
+            auth={auth.user} 
             message={flash.message}
         >
             <div className="flex-grow lg:px-8">
@@ -24,9 +24,9 @@ export default function Editberita({
                     <div className="alert rounded-md my-2 lg:w-2/3">
                         <div>
                             <span className="text-sm">
-                                Anda dapat mengubah informasi acara dengan
-                                mudah. termasuk judul, deskripsi, tempat,
-                                kategori, tanggal mulai, dan tanggal selesai.
+                                Anda dapat mengubah data berita dengan
+                                mudah. termasuk judul, deskripsi, konten,
+                                kategori, dan sumber informasi yang relevan.
                             </span>
                         </div>
                     </div>

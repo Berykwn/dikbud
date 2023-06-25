@@ -1,13 +1,14 @@
-import ReactQuill from "react-quill";
+import React, { useState } from "react";
+import { router } from "@inertiajs/react";
+
 import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
-import { useState } from "react";
 import Linked from "@/Components/Elements/Link/Link";
 import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
-import { router } from "@inertiajs/react";
 
 export default function FormCreateEvent({ errors }) {
     const [judul_event, setJudulEvent] = useState("");
@@ -28,10 +29,10 @@ export default function FormCreateEvent({ errors }) {
         formData.append("tempat", tempat);
         formData.append("tanggal_mulai", tanggal_mulai);
         formData.append("tanggal_selesai", tanggal_selesai);
-        formData.append("gambar", selectedImage);
+        formData.append("thumbnail", selectedImage);
         formData.append("kategori", kategori);
 
-        router.post("/dashboard/event/create", formData);
+        router.post("/dashboard/events/create", formData);
     };
 
     const handleQuillChange = (value) => {
@@ -104,7 +105,7 @@ export default function FormCreateEvent({ errors }) {
                         <option value="Musik">Musik</option>
                         <option value="Olahraga">Olahraga</option>
                         <option value="Kuliner">Kuliner</option>
-                        <option value="Pameran">Pameran</option>
+                        <option value="Pameran">Pameran</option> 
                         <option value="Festival">Festival</option>
                     </select>
                     {errors.kategori && (
@@ -158,7 +159,7 @@ export default function FormCreateEvent({ errors }) {
                     />
                 )}
                 <TextInput type="file" onChange={handleImageChange} />
-                {errors.gambar && <InputError message={errors.gambar} />}
+                {errors.thumbnail && <InputError message={errors.thumbnail} />}
             </div>
             <div className="flex justify-start gap-1 mt-4">
                 <Linked

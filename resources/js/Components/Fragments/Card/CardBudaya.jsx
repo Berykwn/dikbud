@@ -1,11 +1,10 @@
 import { Link } from "@inertiajs/react";
-import FormattedDate from "../../Elements/FormattedDate";
 
 export default function CardBudaya({
     nama,
     deskripsi,
-    konten,
     thumbnail,
+    kategori,
     url,
     id,
     isDark,
@@ -14,14 +13,17 @@ export default function CardBudaya({
         deskripsi.length > 100 ? deskripsi.slice(0, 100) + "..." : deskripsi;
 
     return (
-        <article className="flex max-w-xl flex-col items-start justify-between">
+        <div className="flex max-w-xl flex-col items-start justify-between">
             <div className="relative flex-shrink-0 h-48 w-full">
                 <img
                     className="absolute object-cover h-full w-full rounded-t-md"
-                    src={`/storage/img/beritas/${thumbnail}`}
+                    src={`/storage/img/budayas/${thumbnail}`}
                     alt={nama}
                 />
             </div>
+            <div className="flex items-center gap-x-4 text-xs mt-4">
+                <span className="text-neutral-500">{kategori}</span>
+            </div>  
             <div className="group relative">
                 <h3
                     className={`mt-3 text-lg font-semibold leading-6 group-hover:text-deep-teal ${
@@ -42,6 +44,6 @@ export default function CardBudaya({
                     }}
                 ></p>
             </div>
-        </article>
+        </div>
     );
 }

@@ -18,39 +18,6 @@ const Header = ({ handleSidebarToggle, auth }) => {
                     Hallo! {auth.name}
                 </span>
             </div>
-            {/* <div className="flex-none px-2 py-3">
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="cursor-pointer">
-                        <h2 className="text-md mr-2 text-neutral-700">
-                            
-                        </h2>
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 text-neutral-700"
-                    >
-                        <li>
-                            <a href="#" method="post" as="button">
-                                Profil Pengguna
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" method="post" as="button">
-                                Dasboard
-                            </a>
-                        </li>
-                        <li>
-                            <Link
-                                method="post"
-                                href={route("logout")}
-                                as="button"
-                            >
-                                Logout
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div> */}
         </section>
     );
 };

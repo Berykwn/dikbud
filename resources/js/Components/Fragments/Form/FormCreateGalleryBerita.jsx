@@ -1,11 +1,13 @@
+import React, { useState } from "react";
+import { router } from "@inertiajs/react";
+
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
 import Linked from "@/Components/Elements/Link/Link";
-import PrimaryButton from "@/Components/Elements/Button/PrimaryButton"; 
+import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
-import { useState } from "react";
-import { router } from "@inertiajs/react";
+
 
 export default function FormCreateGalleryBerita(props) {
     const { beritas, errors } = props;

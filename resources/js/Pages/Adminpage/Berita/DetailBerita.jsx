@@ -2,7 +2,7 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import Breadcrumbs from "@/Components/Fragments/Partials/Breadcrumbs";
 import FormattedDate from "@/Components/Elements/FormattedDate";
 import Icon from "@/Components/Elements/Icon/Icon";
-import Linked from "@/Components/Elements/Link/Link";
+import MyLink from "@/Components/Elements/Link/Link";
 
 const DetailBerita = ({ title, pages, beritaDetail, auth }) => {
     return (
@@ -15,31 +15,31 @@ const DetailBerita = ({ title, pages, beritaDetail, auth }) => {
                         <div>
                             <Icon name="info" />
                             <span className="text-sm">
-                                Ini adalah tampilan ketika user berada di menu
-                                Detail Berita
+                                Ini adalah tampilan ketika pengguna berada di
+                                menu Detail Berita.
                             </span>
                         </div>
                     </div>
+                    <div className="flex justify-start gap-1 mb-2">
+                        <MyLink
+                            href={route("dashboard.berita")}
+                            variant="secondary"
+                            size="btn-xs rounded-md"
+                        >
+                            Kembali
+                        </MyLink>
+                        <MyLink
+                            href={route("dashboard.berita.edit")}
+                            method="get"
+                            data={{ id: beritaDetail.id }}
+                            variant="dodger-blue"
+                            size="btn-xs rounded-md"
+                        >
+                            Edit
+                        </MyLink>
+                    </div>
                     <div className="container mx-auto flex flex-col md:flex-row">
                         <div className="py-2 flex-grow">
-                            <div className="flex justify-end gap-1 mb-2">
-                                <Linked
-                                    href={route("dashboard.berita")}
-                                    variant="secondary"
-                                    size="btn-xs rounded-md"
-                                > 
-                                    Kembali
-                                </Linked>
-                                <Linked
-                                    href={route("dashboard.berita.edit")}
-                                    method="get"
-                                    data={{ id: beritaDetail.id }}
-                                    variant="dodger-blue"
-                                    size="btn-xs rounded-md"
-                                >
-                                    Edit
-                                </Linked>
-                            </div>
                             <div className="relative lg:rounded-lg overflow-hidden">
                                 <img
                                     src={`/storage/img/beritas/${beritaDetail.thumbnail}`}

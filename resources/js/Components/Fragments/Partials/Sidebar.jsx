@@ -101,12 +101,12 @@ const Sidebar = ({ pages }) => {
             iconName: "museum",
             items: [
                 { title: "Table Budaya", link: "dashboard.budaya" },
-                { title: "Gallery Budaya", link: "dashboard.galleryberita" },
+                { title: "Gallery Budaya", link: "dashboard.gallery.budaya" },
                 { title: "Video Budaya", link: "dashboard.galleryberita" },
             ],
         },
     ];
-    
+
     const baseClassName =
         "text-slate-600 px-4 py-4 flex items-center tracking-wide";
     const activeClassName =
@@ -181,7 +181,7 @@ const Sidebar = ({ pages }) => {
                         >
                             <Icon name={"team"} />
                         </span>
-                        <Link href={route("profile.edit")}>Pegawai</Link>
+                        <Link href={route("dashboard.pegawai")}>Pegawai</Link>
                     </li>
                     <li
                         className={`${baseClassName} ${
@@ -192,9 +192,7 @@ const Sidebar = ({ pages }) => {
                     >
                         <span
                             className={`mr-2 -mt-1 ${
-                                pages === "Profile"
-                                    ? ""
-                                    : "text-dodger-blue/60"
+                                pages === "Profile" ? "" : "text-dodger-blue/60"
                             }`}
                         >
                             <Icon name={"auth"} />
@@ -205,7 +203,7 @@ const Sidebar = ({ pages }) => {
             </nav>
 
             <div className="flex-grow" />
-            <Link className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-slate-300 rounded-md tracking-wide">
+            <Link href={route("logout")} method="POST" className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-slate-300 rounded-md tracking-wide">
                 <div className="mr-2">
                     <Icon name={"logout"} />
                 </div>

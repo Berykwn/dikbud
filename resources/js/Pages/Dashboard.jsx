@@ -15,15 +15,15 @@ export default function Dashboard(props) {
                         Feedback
                     </h6>
                     <span className="text-sm">
-                        Di sini, Anda
-                        akan menemukan beragam spanengalaman dan opini dari
-                        masyarakat yang berhubungan dengan kegiatan kebudayaan
-                        kami.
-                        <a href="" className="text-blue-500"> Lihat selengkapnya...</a>
+                        Di sini, Anda akan menemukan beragam spanengalaman dan
+                        opini dari masyarakat yang berhubungan dengan kegiatan
+                        kebudayaan kami.
+                        <a href="" className="text-blue-500">
+                            {" "}
+                            Lihat selengkapnya...
+                        </a>
                     </span>
-                    <div className="flex justify-start pb-2">
-                        
-                    </div>
+                    <div className="flex justify-start pb-2"></div>
                     <TableLatestFeedback data={feedback.data} />
                 </div>
             </div>

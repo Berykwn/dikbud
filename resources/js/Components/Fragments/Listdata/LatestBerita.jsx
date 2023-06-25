@@ -1,70 +1,69 @@
-import React from "react";
-import { Fragment } from "react";
-import Linked from "@/Components/Elements/Link/Link";
 import { Link } from "@inertiajs/react";
+import LinkedTo from "@/Components/Elements/Link/Link";
 import FormattedDate from "../../Elements/FormattedDate";
 import CardBerita from "../Card/CardBerita";
 
 export default function LatestBerita({ beritas, isDark }) {
-    return (
-        <Fragment>
-            <div className="flex flex-col lg:gap-4 md:gap-2 md:flex-row">
-                <div className="w-full md:w-3/4 lg:px-6 lg:pt-8 lg:pb-14 md:pb-7 mt-8 md:mt-0">
-                    {beritas.slice(0, 1).map((berita) => (
-                        <article 
-                            key={berita.id}
-                            className="flex max-w-xl flex-col items-start justify-between"
-                        >
-                            <div className="relative flex-shrink-0 h-96 w-full">
-                                <img
-                                    className="absolute object-cover h-full w-full rounded-t-md"
-                                    src={`/storage/img/beritas/${berita.thumbnail}`}
-                                    alt={berita.judul}
+    const renderJubotron = () => {
+        return (
+            <div className="w-full md:w-3/4 lg:px-6 lg:pt-8 lg:pb-14 md:pb-7 mt-8 md:mt-0">
+                {beritas.slice(0, 1).map((item) => (
+                    <article
+                        key={item.id}
+                        className="flex max-w-xl flex-col items-start justify-between"
+                    >
+                        <div className="relative flex-shrink-0 h-96 w-full">
+                            <img
+                                className="absolute object-cover h-full w-full rounded-t-md"
+                                src={`/storage/img/beritas/${item.thumbnail}`}
+                                alt={item.judul}
+                            />
+                        </div>
+                        <div className="flex items-center gap-x-4 text-xs mt-4">
+                            <time className="text-neutral-400">
+                                <FormattedDate
+                                    date={item.updated_at}
+                                    key="tanggal-mulai"
                                 />
-                            </div>
-                            <div className="flex items-center gap-x-4 text-xs mt-4">
-                                <time className="text-neutral-400">
-                                    <FormattedDate
-                                        date={berita.updated_at}
-                                        key="tanggal-mulai"
-                                    />
-                                </time>
-                                <span className="text-neutral-400">
-                                    Penulis: {berita.penulis}
-                                </span>
-                            </div>
-                            <div className="group relative">
-                                <h3
-                                    className={`mt-3 text-lg font-semibold leading-6 group-hover:text-deep-teal ${
-                                        isDark
-                                            ? "text-slate-300"
-                                            : "text-gray-800"
-                                    }`}
+                            </time>
+                            <span className="text-neutral-400">
+                                Penulis: {item.penulis}
+                            </span>
+                        </div>
+                        <div className="group relative">
+                            <h3
+                                className={`mt-3 text-lg font-semibold leading-6 group-hover:text-deep-teal ${
+                                    isDark ? "text-slate-300" : "text-gray-800"
+                                }`}
+                            >
+                                <Link
+                                    url={route("berita.detail")}
+                                    method="get"
+                                    data={{ id: item.id }}
                                 >
-                                    <Link
-                                        href={"/"}
-                                        method="get"
-                                        data={{ id: berita.id }}
-                                    >
-                                        <span className="absolute inset-0 text-justify " />
-                                        {berita.judul}
-                                    </Link>
-                                </h3>
-                                <p
-                                    className={`mt-5 line-clamp-3 text-sm leading-6 text-justify ${
-                                        isDark
-                                            ? "text-slate-300"
-                                            : "text-gray-800"
-                                    }`}
-                                    dangerouslySetInnerHTML={{
-                                        __html: berita.konten.slice(0, 800),
-                                    }}
-                                ></p>
-                            </div>
-                        </article>
-                    ))}
-                </div>
-                
+                                    <span className="absolute inset-0 text-justify " />
+                                    {item.judul}
+                                </Link>
+                            </h3>
+                            <p
+                                className={`mt-5 line-clamp-3 text-sm leading-6 text-justify ${
+                                    isDark ? "text-slate-300" : "text-gray-800"
+                                }`}
+                                dangerouslySetInnerHTML={{
+                                    __html: item.konten.slice(0, 800),
+                                }}
+                            ></p>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        );
+    };
+
+    return (
+        <>
+            <div className="flex flex-col lg:gap-4 md:gap-2 md:flex-row">
+                {renderJubotron()}
                 <div className="w-full lg:px-6 lg:pt-8 pb-14 mt-8 md:mt-0">
                     <div className="max-w-7xl">
                         <h1 className="text-2xl font-bold leading-tight font-[cursive]">
@@ -75,7 +74,7 @@ export default function LatestBerita({ beritas, isDark }) {
                             Lahat dan jangan lewatkan setiap ragam kegiatan
                             budaya yang menarik untuk diikuti dan diapresiasi.
                         </p>
-                    </div> 
+                    </div>
                     <div className="grid grid-cols-1 pt-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-x-6">
                         {beritas.slice(1).map((berita) => (
                             <div key={berita.id} className="block">
@@ -88,16 +87,16 @@ export default function LatestBerita({ beritas, isDark }) {
                         ))}
                     </div>
                     <div className="flex justify-center pt-8">
-                        <Linked
-                            href={route("event")}
+                        <LinkedTo
                             variant={"deep-teal"}
                             size={"btn-sm rounded-md"}
+                            href={route("berita")}
                         >
                             Lihat Semua Berita
-                        </Linked>
+                        </LinkedTo>
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }

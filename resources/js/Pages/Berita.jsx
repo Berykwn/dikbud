@@ -14,7 +14,6 @@ export default function Berita({ berita, allBerita, title, pages }) {
                         beritas={beritas}
                         allBeritas={allBeritas}
                         pages={pages}
-                        isDark={false}
                     />
                     <div className="flex justify-center mt-4">
                         <Paginator meta={berita?.meta} />

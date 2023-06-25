@@ -19,9 +19,8 @@ export default function EditBudaya(props) {
                     <div className="alert rounded-md my-2 lg:w-2/3">
                         <div>
                             <span className="text-sm">
-                                Anda dapat mengubah informasi acara dengan
-                                mudah. termasuk judul, deskripsi, tempat,
-                                kategori, tanggal mulai, dan tanggal selesai.
+                                Anda dapat mengubah informasi budaya dengan
+                                mudah melalui form dibawah ini.
                             </span>
                         </div>
                     </div>

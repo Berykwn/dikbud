@@ -1,18 +1,17 @@
-import FormattedDate from "@/Components/Elements/FormattedDate";
-import MainLayout from "@/Layouts/MainLayout";
-import { useState } from "react";
-import ListBerita from "@/Components/Fragments/Listdata/ListBerita";
-import Linked from "@/Components/Elements/Link/Link";
+import React, { useState } from "react";
+import FormattedDate from "../Components/Elements/FormattedDate";
+import MainLayout from "../Layouts/MainLayout";
+import ListBerita from "../Components/Fragments/Listdata/ListBerita";
+import MyLink from "../Components/Elements/Link/Link";
 
-export default function DetailBerita(props) {
+export default function DetailBeritaPage({
+    title,
+    pages,
+    berita,
+    gambarBerita,
+    beritaDetail,
+}) {
     const [selectedImage, setSelectedImage] = useState(null);
-
-    console.log(props)
-    const images = props.gambarBerita.map((gambar) => ({
-        id: gambar.id,
-        src: gambar.gambar,
-        alt: props.beritaDetail.nama,
-    }));
 
     const handleImageClick = (image) => {
         if (!selectedImage) {
@@ -25,15 +24,29 @@ export default function DetailBerita(props) {
                 (img) => img.id === image.id
             );
 
-            const currentImage = images[currentImageIndex];
-            images[currentImageIndex] = image;
-            images[newImageIndex] = currentImage;
+            const updatedImages = images.map((img, index) => {
+                if (index === currentImageIndex) {
+                    return image;
+                } else if (index === newImageIndex) {
+                    return selectedImage;
+                } else {
+                    return img;
+                }
+            });
+
             setSelectedImage(image);
-        } 
+            setImages(updatedImages);
+        }
     };
 
-    return ( 
-        <MainLayout title={props.title} pages={props.pages}>
+    const images = gambarBerita.map((gambar) => ({
+        id: gambar.id,
+        src: gambar.gambar,
+        alt: beritaDetail.nama,
+    }));
+
+    return (
+        <MainLayout title={title} pages={pages}>
             <section className="bg-off-white-gray">
                 <div className="container mx-auto flex flex-col md:flex-row">
                     <div className="lg:px-16 lg:py-14 md:px-14 md:py-12 flex-grow">
@@ -42,9 +55,9 @@ export default function DetailBerita(props) {
                                 src={
                                     selectedImage
                                         ? `/storage/img/gallery/beritas/${selectedImage.src}`
-                                        : `/storage/img/beritas/${props.beritaDetail.thumbnail}`
+                                        : `/storage/img/beritas/${beritaDetail.thumbnail}`
                                 }
-                                alt={props.beritaDetail.judul}
+                                alt={beritaDetail.judul}
                                 className="w-full max-w-600 max-h-600 object-cover animate-fade-in cursor-pointer lg:max-w-none"
                                 onClick={() => setSelectedImage(null)}
                             />
@@ -85,58 +98,49 @@ export default function DetailBerita(props) {
                         <div className="flex items-center gap-x-2 text-xs mt-4">
                             <time className="text-slate-500">
                                 <FormattedDate
-                                    date={props.beritaDetail.updated_at}
+                                    date={beritaDetail.updated_at}
                                     key="tanggal-mulai"
                                 />{" "}
                             </time>
                             <span className="text-slate-500">
-                                • Author: {props.beritaDetail.penulis}
+                                • Author: {beritaDetail.penulis}
                             </span>
                         </div>
-                        <p>{props.gambarBerita.gambar}</p>
 
                         <h2 className="block mt-1 text-2xl leading-tight font-medium text-black hover:underline">
-                            {props.beritaDetail.judul}
+                            {beritaDetail.judul}
                         </h2>
                         <p className="mt-2 text-gray-500 text-md">
-                            {props.beritaDetail.deskripsi}
+                            {beritaDetail.deskripsi}
                         </p>
                         <p
                             className="mt-2 text-gray-500 text-md"
                             dangerouslySetInnerHTML={{
-                                __html: props.beritaDetail.konten,
+                                __html: beritaDetail.konten,
                             }}
                         ></p>
                     </div>
                 </div>
             </section>
-            
+
             <section className="py-12 bg-off-white-gray">
                 <div className="container mx-auto">
                     <div className="max-w-xl mx-auto text-center pt-4 px-4 py-2">
-                        <h4
-                            className={
-                                "font-semibold text-2xl lg:pb-5 sm:text-4xl md:text-5xl mt-3 font-[cursive]"
-                            }
-                        >
+                        <h4 className="font-semibold text-2xl lg:pb-5 sm:text-4xl md:text-5xl mt-3 font-[cursive]">
                             Lihat Berita Lainnya
-                        </h4> 
+                        </h4>
                     </div>
                     <div className="flex flex-wrap justify-center md:justify-start">
-                        <ListBerita
-                            beritas={props.berita.data}
-                            pages={props.pages}
-                        />
+                        <ListBerita beritas={berita.data} pages={pages} />
                     </div>
-                    <div className="flex justify-center mt-5">
-                        <Linked
+                    <div className="flex justify-center py-8">
+                        <MyLink
                             href={route("berita")}
-                            variant={'secondary'}
-                            size={'btn-sm rounded-md'}
-                            // className="bg-steel-blue hover:bg-lime-600 text-white font-bold py-2 px-4 rounded-lg"
+                            variant="deep-teal"
+                            size="btn-sm rounded-md"
                         >
-                            Lihat lainnya
-                        </Linked>
+                            Lihat Semua Berita
+                        </MyLink>
                     </div>
                 </div>
             </section>

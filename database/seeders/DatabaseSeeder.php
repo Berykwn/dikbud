@@ -24,9 +24,6 @@ class DatabaseSeeder extends Seeder
             BeritaSeeder::class,
         ]);
         $this->call([
-            MuseumSeeder::class,
-        ]);
-        $this->call([
             KategoriBudayaSeeder::class,
         ]);
         $this->call([

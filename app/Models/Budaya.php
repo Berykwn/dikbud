@@ -22,4 +22,9 @@ class Budaya extends Model
     {
         return $this->belongsTo(KategoriBudaya::class);
     }
+
+    public function gambarBudayas()
+    {
+        return $this->hasMany(GambarBudaya::class);
+    }
 }

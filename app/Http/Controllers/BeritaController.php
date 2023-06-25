@@ -23,7 +23,7 @@ class BeritaController extends Controller
             'pages' => 'Berita',
             'title' => 'Berita',
             'berita' => new BeritaCollection($this->berita),
-            'allBerita' => new BeritaCollection($this->allBerita) 
+            'allBerita' => new BeritaCollection($this->allBerita)
         ]);
     }
 
@@ -55,11 +55,6 @@ class BeritaController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return Inertia::render('Adminpage/Berita/CreateBerita', [
@@ -68,15 +63,9 @@ class BeritaController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'judul' => 'required',
             'konten' => 'required',
             'deskripsi' => 'required',
@@ -85,45 +74,36 @@ class BeritaController extends Controller
             'penulis' => 'required',
             'sumber' => 'required',
         ], [
-                'required' => 'The :attribute field is required.',
-                'thumbnail.required' => 'The thumbnail field is required.',
-                'thumbnail.file' => 'The thumbnail must be a file.',
-                'thumbnail.mimes' => 'The thumbnail must be a JPEG, PNG, or JPG file.',
-                'thumbnail.max' => 'The thumbnail may not be greater than 2048 kilobytes.',
-            ]);
+            'required' => 'The :attribute field is required.',
+            'thumbnail.required' => 'The thumbnail field is required.',
+            'thumbnail.file' => 'The thumbnail must be a file.',
+            'thumbnail.mimes' => 'The thumbnail must be a JPEG, PNG, or JPG file.',
+            'thumbnail.max' => 'The thumbnail may not be greater than 2048 kilobytes.',
+        ]);
 
-        $thumbnail = $request->file('thumbnail');
+        try {
+            $thumbnailFile = $request->file('thumbnail');
+            $thumbnailName = time() . '_' . Str::slug($thumbnailFile->getClientOriginalName());
+            $thumbnailFile->storeAs('img/beritas', $thumbnailName);
 
-        if (!$thumbnail->isValid()) {
-            return redirect()->back()
-                ->withErrors(['thumbnail' => 'There was an error uploading the thumbnail. Please try again.'])
-                ->withInput();
+            $beritaData = [
+                'judul' => $request->input('judul'),
+                'konten' => $request->input('konten'),
+                'deskripsi' => $request->input('deskripsi'),
+                'thumbnail' => $thumbnailName,
+                'kategori' => $request->input('kategori'),
+                'penulis' => $request->input('penulis'),
+                'sumber' => $request->input('sumber'),
+            ];
+
+            Berita::create($beritaData);
+
+            return redirect()->route('dashboard.berita')->with('message', 'Data berita berhasil ditambahkan.');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesahalan saad mengupload gambar.');
         }
-
-        $thumbnailName = time() . '_' . Str::slug($thumbnail->getClientOriginalName());
-
-        $thumbnail->storeAs('img/beritas', $thumbnailName);
-
-        $berita = new Berita();
-        $berita->judul = $request->input('judul');
-        $berita->konten = $request->input('konten');
-        $berita->deskripsi = $request->input('deskripsi');
-        $berita->thumbnail = $thumbnailName;
-        $berita->kategori = $request->input('kategori');
-        $berita->penulis = $request->input('penulis');
-        $berita->sumber = $request->input('sumber');
-        $berita->save();
-
-        return redirect()->route('dashboard.berita')->with('message', 'News data has been successfully added.');
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
     public function show(Berita $berita, Request $request)
     {
         $beritaDetail = $berita->find($request->id);
@@ -135,12 +115,6 @@ class BeritaController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, Berita $berita)
     {
         $beritas = $berita->find($request->id);
@@ -152,13 +126,6 @@ class BeritaController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $berita = Berita::findOrFail($id);
@@ -175,32 +142,33 @@ class BeritaController extends Controller
             'sumber' => 'required',
         ]);
 
-        $berita->update($validatedData);
+        try {
+            $berita->update($validatedData);
 
-        if ($request->hasFile('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
-
-            // Delete the previous thumbnail file if it exists
-            if ($previousThumbnail && Storage::exists('img/beritas/' . $previousThumbnail)) {
-                Storage::delete('img/beritas/' . $previousThumbnail);
+            if ($request->hasFile('thumbnail')) {
+                $this->handleThumbnailUpload($berita, $request->file('thumbnail'), $previousThumbnail);
             }
 
-            $thumbnailName = time() . '_' . $thumbnail->getClientOriginalName();
-            $thumbnail->storeAs('img/beritas', $thumbnailName);
-
-            $berita->thumbnail = $thumbnailName;
-            $berita->save();
+            return redirect()->route('dashboard.berita')->with('message', 'Data berita berhasil diperbarui');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui data berita.');
         }
-
-        return redirect()->route('dashboard.berita')->with('message', 'Data berita berhasil diperbarui');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Berita  $berita
-     * @return \Illuminate\Http\Response 
-     */
+    private function handleThumbnailUpload(Berita $berita, $thumbnail, $previousThumbnail)
+    {
+        // Delete the previous thumbnail file if it exists
+        if ($previousThumbnail && Storage::exists('img/beritas/' . $previousThumbnail)) {
+            Storage::delete('img/beritas/' . $previousThumbnail);
+        }
+
+        $thumbnailName = time() . '_' . $thumbnail->getClientOriginalName();
+        $thumbnail->storeAs('img/beritas', $thumbnailName);
+
+        $berita->thumbnail = $thumbnailName;
+        $berita->save();
+    }
+
     public function destroy(Berita $berita, Request $request)
     {
         $berita = Berita::find($request->id);

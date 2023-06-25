@@ -15,8 +15,8 @@ export default function DetailBudaya(props) {
                         <div>
                             <Icon name="info" />
                             <span className="text-sm">
-                                Ini adalah tampilan ketika user berada di menu
-                                Detail Budaya
+                                Ini adalah tampilan ketika pengguna berada di
+                                menu Detail Berita.
                             </span>
                         </div>
                     </div>

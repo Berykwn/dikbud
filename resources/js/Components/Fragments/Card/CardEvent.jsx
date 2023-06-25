@@ -1,23 +1,23 @@
 import { Link } from "@inertiajs/react";
 import FormattedDate from "../../Elements/FormattedDate";
 
-export default function CardEvent(props) {
+export default function CardEvent(event) {
     const {
         thumbnail,
         judul_event,
         deskripsi,
-        tanggal_mulai,
+        tanggal_mulai, 
         tanggal_selesai,
         url,
         id,
         isDark,
-    } = props;
+    } = event;
 
     const formattedDeskripsi =
         deskripsi.length > 100 ? deskripsi.slice(0, 100) + "..." : deskripsi;
 
     return (
-        <article className="flex max-w-xl flex-col items-start justify-between">
+        <div className="flex max-w-xl flex-col items-start justify-between">
             
             <div className="relative flex-shrink-0 h-48 w-full">
                 <img
@@ -26,7 +26,6 @@ export default function CardEvent(props) {
                     alt={judul_event}
                 />
             </div>
-
             <div className="flex items-center gap-x-4 text-xs mt-4">
                 <time className="text-gray-400">
                     <FormattedDate date={tanggal_mulai} key="tanggal-mulai" /> •{" "}
@@ -36,7 +35,6 @@ export default function CardEvent(props) {
                     />
                 </time>
             </div>
-
             <div className="group relative">
                 <h3
                     className={`mt-3 text-lg font-semibold leading-6 group-hover:text-deep-teal ${
@@ -57,7 +55,6 @@ export default function CardEvent(props) {
                     }}
                 ></p>
             </div>
-
-        </article>
+        </div>
     );
 }
