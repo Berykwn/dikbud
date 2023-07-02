@@ -3,7 +3,7 @@ import Icon from "../../Elements/Icon/Icon";
 
 const NavbarLogo = () => {
     return (
-        <div className="inline-flex lg:px-20 py-2">
+        <div className="inline-flex lg:px-20 pb-2 pt-4">
             <img
                 src="http://127.0.0.1:8000/img/tutwuri.png"
                 alt="Description of the image"
@@ -62,11 +62,11 @@ const NavbarDropdownMenu = ({ pages }) => {
                         href={route("budaya")}
                         className={pages === "Museum" ? "text-slate-500" : ""}
                     >
-                        Museum
+                        Museum Budaya
                     </Link>
                 </li>
                 <li>
-                    <a href="#kritikdansaran">Kritik & Saran</a>
+                    <a href="#kritikdansaran">Kirim Pesan</a>
                 </li>
             </ul>
         </div>
@@ -106,7 +106,7 @@ const NavbarMenu = ({ pages }) => {
                 </li>
                 <li
                     className={`text-slate-700 ${
-                        pages === "Museum"
+                        pages === "Budaya"
                             ? "border-b-4 border-deep-teal hover:border-0"
                             : ""
                     }`}
@@ -120,11 +120,11 @@ const NavbarMenu = ({ pages }) => {
                             : ""
                     }`}
                 >
-                    <Link href={route("pegawai")}>Stuktur Organisasi</Link>
+                    <Link href={route("pegawai")}>Daftar Pegawai</Link>
                 </li>
                 <li>
                     <a className="text-slate-700" href="/#kritikdansaran">
-                        Kontak
+                        Kirim Pesan
                     </a>
                 </li>
             </ul>

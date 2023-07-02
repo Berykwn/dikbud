@@ -34,7 +34,7 @@ class BudayaController extends Controller
         $gambarBudayas = $budayaDetail->gambarBudayas()->where('budaya_id', $request->id)->get();
 
         return Inertia::render('DetailBudaya', [
-            'pages' => 'Detail Budaya',
+            'pages' => 'Budaya',
             'title' => 'Detail Budaya',
             'budayaDetail' => $budayaDetail,
             'budaya' => new BudayaCollection(Budaya::with('kategori_budaya')->latest()->take(4)->get()),
@@ -47,17 +47,17 @@ class BudayaController extends Controller
         $this->fetchBudayaData();
 
         return Inertia::render('Adminpage/Budaya/Budaya', [
-            'title' => 'Dashboard Budaya',
-            'page' => 'Dashboard Budaya',
+            'title' => 'Budaya',
+            'page' => 'Museum Budaya',
             'budaya' => new BudayaCollection($this->budaya),
             'allBudaya' => new BudayaCollection($this->allBudaya)
         ]);
-    }
+    } 
 
     public function create()
     {
         return Inertia::render('Adminpage/Budaya/CreateBudaya', [
-            'pages' => 'Dashboard Budaya',
+            'pages' => 'Museum Budaya',
             'title' => 'Tambah Budaya',
             'kategoriBudaya' => KategoriBudaya::all()
         ]);
@@ -116,7 +116,7 @@ class BudayaController extends Controller
         return Inertia::render('Adminpage/Budaya/EditBudaya', [
             'budaya' => Budaya::with('kategori_budaya')->findOrFail($request->id),
             'kategoriBudaya' => KategoriBudaya::all(),
-            'pages' => 'Dashboard Budaya',
+            'pages' => 'Budaya',
             'title' => 'Edit Budaya',
         ]);
     }

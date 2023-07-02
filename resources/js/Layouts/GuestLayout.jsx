@@ -6,12 +6,12 @@ export default function Guest({ children }) {
         <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-off-white-gray">
             <div className="inline-flex mt-2 mr-6">
                 <img
-                    src="http://127.0.0.1:8000/img/wonderful.png"
+                    src="http://127.0.0.1:8000/img/tutwuri.png"
                     alt="Description of the image"
-                    className="h-16 object-cover"
+                    className="h-16 object-cover mr-4"
                 />
                 <Link href="/">
-                    <ApplicationLogo className="w-18 h-16 fill-current text-gray-500" />
+                    <ApplicationLogo className="w-18 h-16 mt-1 fill-current text-gray-500" />
                 </Link>
             </div>
             <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">

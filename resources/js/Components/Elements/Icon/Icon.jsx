@@ -257,11 +257,11 @@ export default function Icon({ name, ...props }) {
             );
         case "kontak":
             return (
-                <div className="flex items-center justify-center pt-4 pb-4">
+                <div className="flex items-center justify-start pt-4 pb-4">
                     <a
                         href=""
                         target="_blank"
-                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-neutral-800 hover:border-[#E4405F] hover:bg-[#E4405F] hover:text-white"
+                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:border-[#E4405F] hover:bg-[#E4405F] hover:text-white"
                     >
                         <svg
                             role="img"
@@ -277,7 +277,7 @@ export default function Icon({ name, ...props }) {
                     <a
                         href=""
                         target="_blank"
-                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-neutral-800 hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white"
+                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white"
                     >
                         <svg
                             role="img"
@@ -293,7 +293,7 @@ export default function Icon({ name, ...props }) {
                     <a
                         href=""
                         target="_blank"
-                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-neutral-800 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white"
+                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white"
                     >
                         <svg
                             role="img"
@@ -309,7 +309,7 @@ export default function Icon({ name, ...props }) {
                     <a
                         href=""
                         target="_blank"
-                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-neutral-800 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white"
+                        className="mr-3 flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white"
                     >
                         <svg
                             role="img"

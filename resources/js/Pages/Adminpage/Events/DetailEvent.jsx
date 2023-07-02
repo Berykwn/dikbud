@@ -43,8 +43,8 @@ const DetailEvent = ({ title, pages, eventDetail, auth }) => {
                             </div>
                             <div className="relative lg:rounded-lg overflow-hidden">
                                 <img
-                                    src={`/storage/img/events/${eventDetail.gambar}`}
-                                    alt={eventDetail.gambar}
+                                    src={`/storage/img/events/${eventDetail.thumbnail}`}
+                                    alt={eventDetail.thumbnail}
                                     className="w-full max-w-600 max-h-600 object-cover animate-fade-in cursor-pointer lg:max-w-none"
                                 />
                             </div>

@@ -34,7 +34,7 @@ class PegawaiController extends Controller
         $this->fetchPegawaiData();
 
         return Inertia::render('Adminpage/Pegawai/Pegawai', [
-            'pages' => 'Dashboard Pegawai',
+            'pages' => 'Pegawai',
             'title' => 'Dashboard Pegawai',
             'pegawai' => new PegawaiCollection($this->pegawai),
             'allPegawai' => new PegawaiCollection($this->allPegawai)
@@ -44,7 +44,7 @@ class PegawaiController extends Controller
     public function create()
     {
         return Inertia::render('Adminpage/Pegawai/CreatePegawai', [
-            'pages' => 'Dashboard Pegawai',
+            'pages' => 'Pegawai',
             'title' => 'Dashboard Pegawai',
         ]);
     }
@@ -88,9 +88,9 @@ class PegawaiController extends Controller
     public function edit(Pegawai $pegawai, Request $request)
     {
         return Inertia::render('Adminpage/Pegawai/EditPegawai', [
-            'pegawai' => Pegawai::findOrFail($request->id),
-            'pages' => 'Dashboard Pegawai',
+            'pages' => 'Pegawai',
             'title' => 'Edit Pegawai',
+            'pegawai' => Pegawai::findOrFail($request->id),
         ]);
     }
     public function update(Request $request, $id)
@@ -101,7 +101,7 @@ class PegawaiController extends Controller
             'nama' => 'required|max:255',
             'jabatan' => 'required|max:255',
             'pesan' => 'required',
-            'foto' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'nullable|max:2048',
         ]);
 
         try {

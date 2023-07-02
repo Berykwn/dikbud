@@ -70,7 +70,7 @@ export default function FormFeedback({ message, validateError }) {
                         htmlFor="kritik dan saran"
                         value="Pesan"
                         className="text-gray-800 font-medium mb-2"
-                    />
+                    /> 
                     <textarea
                         name="pesan"
                         id="pesan"

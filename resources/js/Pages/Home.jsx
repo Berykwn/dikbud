@@ -1,10 +1,8 @@
 import LatestEvent from "@/Components/Fragments/Listdata/LatestEvent";
 import PageDescription from "@/Components/Fragments/Partials/DescriptionPage";
 import MainLayout from "@/Layouts/MainLayout";
-import Icon from "@/Components/Elements/Icon/Icon";
 import FormFeedback from "@/Components/Fragments/Form/FormFeedback";
 import Carousel from "@/Components/Fragments/Carousel/Carousel";
-import ListTeam from "@/Components/Fragments/Listdata/ListTeam";
 import LatestBerita from "@/Components/Fragments/Listdata/LatestBerita";
 import ListKategoriBudaya from "@/Components/Fragments/Listdata/ListKategoriBudaya";
 import LinkButton from "@/Components/Elements/Link/Link";
@@ -96,10 +94,8 @@ export default function Home(props) {
                 <div className="container mx-auto px-2">
                     <PageDescription
                         key="home-kontak"
-                        title="Kontak"
-                        desc="Ikuti kami di sosial media berikut. atau kirim pesan langsung dengan mengisi form dibawah"
+                        title="Kirim Pesan"
                     />
-                    <Icon name="kontak" />
                     <FormFeedback
                         message={flash.message}
                         validateError={errors}

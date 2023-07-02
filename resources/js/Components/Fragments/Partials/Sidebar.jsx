@@ -5,15 +5,15 @@ import Icon from "@/Components/Elements/Icon/Icon";
 
 const SidebarHeader = () => {
     return (
-        <div className="flex mt-6 justify-center">
+        <div className="flex mt-6 px-4 justify-center">
             <img
-                src="http://127.0.0.1:8000/img/wonderful.png"
+                src="http://127.0.0.1:8000/img/tutwuri.png"
                 alt="Wonderfull Indonesia"
-                className="h-10 object-cover mt-3 lg:mt-2 md:mt-2"
+                className="h-14 object-cover mr-2 mt-3 lg:mt-2 md:mt-2"
             />
-            <ApplicationLogo className="w-10 h-12 fill-current text-slate-50 mt-3 lg:mt-2 md:mt-2" />
-            <Link className="link link-hover normal-case text-lg ml-3 mt-1 font-[gabriola]">
-                Kebudayaan <br /> Kabupaten Lahat
+            <ApplicationLogo className="w-12 h-14 fill-current text-slate-50 mt-3 lg:mt-2 md:mt-2" />
+            <Link className="link link-hover normal-case text-md ml-3 mt-3">
+                Dikbud Kab. Lahat <br /> Bidang Kebudayaan
             </Link>
         </div>
     );
@@ -169,14 +169,14 @@ const Sidebar = ({ pages }) => {
                     </li>
                     <li
                         className={`${baseClassName} ${
-                            pages === "Profile"
+                            pages === "Pegawai"
                                 ? activeClassName
                                 : inactiveClassName
                         }`}
                     >
                         <span
                             className={`mr-2 -mt-1 ${
-                                pages === "Profile" ? "" : "text-dodger-blue/60"
+                                pages === "Pegawai" ? "" : "text-dodger-blue/60"
                             }`}
                         >
                             <Icon name={"team"} />
@@ -203,7 +203,11 @@ const Sidebar = ({ pages }) => {
             </nav>
 
             <div className="flex-grow" />
-            <Link href={route("logout")} method="POST" className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-slate-300 rounded-md tracking-wide">
+            <Link
+                href={route("logout")}
+                method="POST"
+                className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-slate-300 rounded-md tracking-wide"
+            >
                 <div className="mr-2">
                     <Icon name={"logout"} />
                 </div>

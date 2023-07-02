@@ -26,7 +26,7 @@ class GambarBudayaController extends Controller
         $this->fetchgambarBudayaData();
 
         return Inertia::render('Adminpage/Budaya/Gallery/GalleryBudaya', [
-            'pages' => 'Gallery Budaya',
+            'pages' => 'Museum Budaya',
             'title' => 'Gallery Budaya',
             'galleryBudaya' => new GambarBudayaCollection($this->gambarBudaya),
             'allGalleryBudaya' => new GambarBudayaCollection($this->allGambarBudaya),
@@ -43,7 +43,7 @@ class GambarBudayaController extends Controller
         $this->fetchgambarBudayaData();
 
         return Inertia::render('Adminpage/Budaya/Gallery/CreateGalleryBudaya', [
-            'pages' => 'Gallery Budaya',
+            'pages' => 'Museum Budaya',
             'title' => 'Gallery Budaya',
             'budaya' => new BudayaCollection($this->budayas)
         ]);

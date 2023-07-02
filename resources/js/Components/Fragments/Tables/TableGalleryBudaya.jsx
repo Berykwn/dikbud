@@ -51,7 +51,7 @@ export default function TableGalleryBudaya({
                                 <div className="avatar">
                                     <div className="mask mask-squircle w-12 h-12">
                                         <img
-                                            src={`/storage/img/gallery/beritas/${item.gambar}`}
+                                            src={`/storage/img/gallery/budayas/${item.gambar}`}
                                             alt={item.gambar}
                                         />
                                     </div>

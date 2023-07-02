@@ -19,12 +19,6 @@ const TableRow = ({ item }) => {
                     <Linked href="#" variant={"dodger-blue"} size={"btn-xs"}>
                         Detail
                     </Linked>
-                    <Link
-                        href="#"
-                        className="btn btn-xs border-0 bg-indian-red hover:bg-indian-red/80"
-                    >
-                        Hapus
-                    </Link>
                 </div>
             </td>
         </tr>

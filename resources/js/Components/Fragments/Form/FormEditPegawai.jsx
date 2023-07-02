@@ -108,7 +108,7 @@ export default function FormEditPegawai({ pegawai,errors }) {
                     Kembali
                 </Linked>
                 <PrimaryButton type="submit" className="bg-deep-teal">
-                    Tambah
+                    Simpan
                 </PrimaryButton>
             </div>
         </form>
