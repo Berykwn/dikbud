@@ -142,14 +142,14 @@ const Sidebar = ({ pages }) => {
                     <Link href={route("dashboard.carousel")}>
                         <li
                             className={`${baseClassName} ${
-                                pages === "Carousel"
+                                pages === "Banner"
                                     ? activeClassName
                                     : inactiveClassName
                             }`}
                         >
                             <span
                                 className={`mr-2 -mt-1 ${
-                                    pages === "Dashboard"
+                                    pages === "Banner"
                                         ? ""
                                         : "text-dodger-blue/60"
                                 }`}

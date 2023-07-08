@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [CarouselController::class, 'store'])->name('dashboard.carousel.store');
             Route::get('/edit', [CarouselController::class, 'edit'])->name('dashboard.carousel.edit');
             Route::post('/update/{id}', [CarouselController::class, 'update'])->name('dashboard.carousel.update');
+            Route::post('/delete', [CarouselController::class, 'destroy'])->name('dashboard.carousel.destroy');
 
         }));
 

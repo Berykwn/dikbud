@@ -134,8 +134,8 @@ class CarouselController extends Controller
     {
         $img = Carousel::find($request->id);
         //cek apakah di storage ada thumbnail
-        if (Storage::exists('img/gallery/budayas' . $img->img)) {
-            Storage::delete('img/gallery/budayas' . $img->img);
+        if (Storage::exists('img/carousels' . $img->img)) {
+            Storage::delete('img/carousels' . $img->img);
         }
 
         $img->delete();

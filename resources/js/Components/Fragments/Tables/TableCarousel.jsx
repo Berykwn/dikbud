@@ -78,7 +78,7 @@ export default function TableCarousel({ carousels, allCarousels, pages }) {
                                         Edit
                                     </Linked>
                                     <Link
-                                        href={route("dashboard.event.destroy")}
+                                        href={route("dashboard.carousel.destroy")}
                                         as="button"
                                         method="post"
                                         data={{ id: item.id }}

@@ -20,6 +20,36 @@ const TableRow = ({ item }) => {
                         Detail
                     </Linked>
                 </div>
+                <label
+                    htmlFor={`feedbackModal${item.id}`}
+                    className="btn btn-xs bg-deep-teal border-0 hover:bg-deep-teal/80"
+                >
+                    Detail
+                </label>
+                <input
+                    type="checkbox"
+                    id={`feedbackModal${item.id}`}
+                    className="modal-toggle"
+                />
+                <div className="modal">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Nama: {item.nama}</h3>
+                        <h3 className="font-bold text-lg">
+                            kontak: {item.kontak}
+                        </h3>
+                        <p className="font-bold text-lg">
+                            Pesan : " {item.pesan} "
+                        </p>
+                        <div className="modal-action">
+                            <label
+                                htmlFor={`feedbackModal${item.id}`}
+                                className="btn"
+                            >
+                                Close!
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
     );
@@ -45,4 +75,3 @@ export default function TableLatestFeedback({ data }) {
         </div>
     );
 }
- 
