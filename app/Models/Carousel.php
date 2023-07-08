@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class carousel extends Model
 {
+    protected $fillable = [
+        'name',
+        'img'
+    ];
+
     use HasFactory;
 }

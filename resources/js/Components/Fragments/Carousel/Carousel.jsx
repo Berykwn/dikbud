@@ -19,7 +19,7 @@ const Carousel = ({ carousel }) => {
                             className="carousel-item relative w-full"
                         >
                             <img
-                                src={carouselItem.img}
+                                src={`/storage/img/carousels/${carouselItem.img}`}
                                 alt={carouselItem.name}
                                 className="w-full h-[600px]"
                             />

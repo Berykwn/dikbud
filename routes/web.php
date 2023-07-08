@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BudayaController;
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryBeritaController;
 use App\Http\Controllers\PegawaiController;
@@ -34,6 +35,15 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard routes
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::prefix('banner')->group((function () {
+            Route::get('/', [CarouselController::class, 'index'])->name('dashboard.carousel');
+            Route::get('/create', [CarouselController::class, 'create'])->name('dashboard.carousel.create');
+            Route::post('/create', [CarouselController::class, 'store'])->name('dashboard.carousel.store');
+            Route::get('/edit', [CarouselController::class, 'edit'])->name('dashboard.carousel.edit');
+            Route::post('/update/{id}', [CarouselController::class, 'update'])->name('dashboard.carousel.update');
+
+        }));
+
         Route::prefix('events')->group(function () {
             Route::get('/', [EventController::class, 'index'])->name('dashboard.events');
             Route::get('/detail', [EventController::class, 'show'])->name('dashboard.event.detail');

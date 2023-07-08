@@ -139,6 +139,26 @@ const Sidebar = ({ pages }) => {
                             Dashboard
                         </li>
                     </Link>
+                    <Link href={route("dashboard.carousel")}>
+                        <li
+                            className={`${baseClassName} ${
+                                pages === "Carousel"
+                                    ? activeClassName
+                                    : inactiveClassName
+                            }`}
+                        >
+                            <span
+                                className={`mr-2 -mt-1 ${
+                                    pages === "Dashboard"
+                                        ? ""
+                                        : "text-dodger-blue/60"
+                                }`}
+                            >
+                                <Icon name={"gallery"} />
+                            </span>
+                            Banner
+                        </li>
+                    </Link>
                     {/* Render menu items dynamically */}
                     {menuData.map((menu) => (
                         <Menu

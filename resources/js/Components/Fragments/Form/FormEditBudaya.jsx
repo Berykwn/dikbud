@@ -11,7 +11,6 @@ import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import ImageUploadAlert from "@/Components/Elements/Alert/ImageUploadAlert";
 
 export default function FromEditBudaya({ budaya, kategoriBudayas, errors }) {
-    console.log(budaya);
     const [nama, setNama] = useState(budaya.nama || "");
     const [kategori, setKategori] = useState(budaya.kategori || "");
     const [deskripsi, setDeskripsi] = useState(budaya.deskripsi || "");
