@@ -102,7 +102,7 @@ const Sidebar = ({ pages }) => {
             items: [
                 { title: "Table Budaya", link: "dashboard.budaya" },
                 { title: "Gallery Budaya", link: "dashboard.gallery.budaya" },
-                { title: "Video Budaya", link: "dashboard.galleryberita" },
+                // { title: "Video Budaya", link: "dashboard.galleryberita" },
             ],
         },
     ];

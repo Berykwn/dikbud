@@ -9,7 +9,7 @@ export default function Dashboard(props) {
             <div className="flex flex-wrap px-4 pt-2 pb-6 relative">
                 <Badges countData={countData} latestData={latestData} />
             </div>
-            <div className="flex-grow px-8">
+            <div className="flex-grow px-8 pb-4">
                 <div className="bg-white px-4 py-4 lg:w-2/3 rounded-md shadow-md">
                     <h6 className="font-semibold text-xl lg:pb-1 lg:pt-2 sm:text-4xl md:text-xl">
                         Feedback
@@ -23,8 +23,7 @@ export default function Dashboard(props) {
                             Lihat selengkapnya...
                         </a>
                     </span>
-                    <div className="flex justify-start pb-2"></div>
-                    <TableLatestFeedback data={feedback.data} />
+                        <TableLatestFeedback data={feedback.data} />
                 </div>
             </div>
         </AdminLayout>

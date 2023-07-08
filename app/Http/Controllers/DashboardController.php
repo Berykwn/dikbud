@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\KritikSaranCollection;
+use App\Models\Budaya;
 use App\Models\Event;
 use App\Models\Berita;
 use App\Models\Kritik;
+use App\Models\Pegawai;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -17,12 +19,16 @@ class DashboardController extends Controller
         $latestData = [
             'Berita' => Berita::latest('updated_at')->first(['updated_at']),
             'Event' => Event::latest('updated_at')->first(['updated_at']),
+            'Budaya' => Budaya::latest('updated_at')->first(['updated_at']),
             'Kritik' => Kritik::latest('updated_at')->first(['updated_at']),
+            'Pegawai' => Pegawai::latest('updated_at')->first(['updated_at']),
         ];
 
         $countData = [
             'Berita' => Berita::count(),
             'Event' => Event::count(),
+            'Budaya' => Budaya::count(),
+            'Pegawai' => Pegawai::count(),
             'Kritik' => Kritik::count(),
         ];
 

@@ -15,11 +15,6 @@ const TableRow = ({ item }) => {
             </td>
             <td className="bg-white">{item.kontak}</td>
             <td className="bg-white">
-                <div className="flex flex-wrap gap-1">
-                    <Linked href="#" variant={"dodger-blue"} size={"btn-xs"}>
-                        Detail
-                    </Linked>
-                </div>
                 <label
                     htmlFor={`feedbackModal${item.id}`}
                     className="btn btn-xs bg-deep-teal border-0 hover:bg-deep-teal/80"

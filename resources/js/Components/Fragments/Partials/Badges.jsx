@@ -16,7 +16,7 @@ export default function Badges({ countData, latestData }) {
                 return (
                     <div className="w-full lg:w-6/12 xl:w-3/12 px-4" key={key}>
                         <div
-                            className={`relative flex flex-col min-w-0 break-words bg-base-100/60 rounded mb-6 xl:mb-0 shadow-md ${colorClass}/50`}
+                            className={`relative flex flex-col min-w-0 break-words bg-base-100/60 rounded mb-6 xl:mb-2 shadow-md ${colorClass}/50`}
                         >
                             <div className="flex-auto p-4 bg-white">
                                 <div className="flex flex-wrap">
